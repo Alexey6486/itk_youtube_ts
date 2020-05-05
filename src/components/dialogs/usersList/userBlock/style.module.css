@@ -1,0 +1,21 @@
+.userBlock{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.userBlock:not(:last-child){
+    border-bottom: 1px solid #eaeaea;
+}
+.userBlock>a{
+    color: #333333;
+    font-size: 16px;
+    padding: 0 10px;
+    transition: all linear 200ms;
+    text-decoration: none;
+}
+.userBlock>a.active,
+.userBlock:hover>a{
+    color: #ffa405;
+}

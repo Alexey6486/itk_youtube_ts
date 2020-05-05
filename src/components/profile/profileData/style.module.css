@@ -1,0 +1,39 @@
+.profileData{
+    margin-bottom: 50px;
+}
+.profileData__title{
+    margin-bottom: 10px;
+}
+.profileData__title>h3{
+    margin-bottom: 10px;
+    color: #444444;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.profileDataContent{
+    display: flex;
+}
+.profileDataContent__avatar{
+    margin-right: 20px;
+}
+.profileDataContent__avatar>svg{
+    fill: #333333;
+    width: 50px;
+}
+.profileDataContent__name{
+    margin-bottom: 10px;
+}
+.profileDataContent__name>h2{
+    color: #444444;
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.profileDataContent__position{}
+.profileDataContent__position>h3{
+    color: #444444;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: normal;
+}

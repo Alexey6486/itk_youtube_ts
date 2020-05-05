@@ -1,0 +1,45 @@
+.newMessageBlock{
+    border: 1px solid #eaeaea;
+    width: 100%;
+    height: 110px;
+}
+.newMessageForm{
+    width: 100%;
+    padding: 10px;
+}
+.newMessageForm>textarea{
+    resize: none;
+    background: transparent;
+    height: 60px;
+    width: 100%;
+    box-shadow: none;
+    outline: none;
+    color: #333333;
+    font-size: 14px;
+    border: 1px solid transparent;
+    transition: all linear 200ms;
+}
+.newMessageForm>textarea::placeholder{
+    color: #333333;
+}
+.newMessageForm>textarea:hover,
+.newMessageForm>textarea:focus{
+    border: 1px solid #ffa405;
+}
+.newMessageForm>button{
+    border: 1px solid #ffa405;
+    background-color: transparent;
+    font-size: 14px;
+    display: flex;
+    align-self: center;
+    height: 30px;
+    justify-content: center;
+    color: #444444;
+    padding: 0 30px;
+    cursor: pointer;
+    transition: all linear 200ms;
+}
+.newMessageForm>button:hover{
+    color: #eaeaea;
+    background-color: #ffa405;
+}

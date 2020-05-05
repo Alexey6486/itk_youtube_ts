@@ -1,0 +1,8 @@
+.header{
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+    font-weight: bold;
+    color: #333333;
+    text-transform: uppercase;
+}

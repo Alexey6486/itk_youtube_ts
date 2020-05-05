@@ -1,0 +1,46 @@
+.postsTitle{
+    margin-bottom: 10px;
+}
+.postsTitle h3{
+    margin-bottom: 10px;
+    color: #444444;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.addPostBlock{
+    margin-bottom: 30px;
+}
+.addPostBlock form{
+    display: flex;
+    flex-direction: column;
+}
+.addPostBlock textarea::placeholder{
+    color: #444444;
+}
+.addPostBlock textarea{
+    resize: none;
+    width: 500px;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #444444;
+    border: 1px solid #eaeaea;
+    outline: none;
+}
+.addPostBlock input{
+    width: 100%;
+    max-width: 120px;
+    height: 39px;
+    background-color: transparent;
+    border: 1px solid #ffa405;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all linear 150ms;
+    color: #444444;
+}
+.addPostBlock input:hover{
+    color: #eaeaea;
+    border: 1px solid #ffa405;
+    background-color: #ffa405;
+}

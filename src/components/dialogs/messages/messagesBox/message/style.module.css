@@ -1,0 +1,31 @@
+.message{
+    border: 1px solid #eaeaea;
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-bottom: 10px;
+}
+.message__avatar{
+    padding: 10px;
+}
+.message__avatar>svg{
+    width: 45px;
+    fill: #333333;
+}
+.message__text{
+    padding: 10px;
+}
+.message__text>p{
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.2;
+}
+.message__author{
+    padding: 10px 10px 0 10px;
+}
+.message__author>p{
+    font-size: 14px;
+    color: #333333;
+    font-weight: bold;
+    line-height: 1;
+}
