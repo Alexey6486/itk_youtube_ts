@@ -2,11 +2,16 @@ import React from "react";
 import styles from './style.module.css'
 import MessagesBox from "./messagesBox/MessagesBox";
 import NewMessage from "./messagesBox/newMessage/NewMessage";
+import {MessageType} from "../Dialogs";
 
-function Messages() {
+type PropsType = {
+    messages: Array<MessageType>
+}
+
+function Messages(props: PropsType) {
     return (
         <div className={styles.messagesBlock}>
-            <MessagesBox/>
+            <MessagesBox messages={props.messages}/>
             <NewMessage/>
         </div>
     );
