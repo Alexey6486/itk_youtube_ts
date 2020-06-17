@@ -44,3 +44,9 @@
     border: 1px solid #ffa405;
     background-color: #ffa405;
 }
+.addPostBlock input:focus{
+    outline: none;
+}
+.addPostBlock.err textarea::placeholder{
+    color: tomato;
+}

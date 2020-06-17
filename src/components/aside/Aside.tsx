@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './style.module.css'
 import {NavLink} from "react-router-dom";
 
-
 function Aside() {
     return (
         <div className={styles.aside}>

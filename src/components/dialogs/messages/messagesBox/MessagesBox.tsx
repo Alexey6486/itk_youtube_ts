@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './style.module.css'
 import Message from "./message/Message";
-import { MessageType } from "../../Dialogs";
+import { MessageType } from "../../../../redux/store";
 
 type PropsType = {
     messages: Array<MessageType>
@@ -9,8 +9,10 @@ type PropsType = {
 
 function MessagesBox(props: PropsType) {
 
-    const messagesInChatRoomMap = props.messages.map((message) => {
-        return <Message author={message.author} message={message.message} />
+    const {messages} =props;
+
+    const messagesInChatRoomMap = messages.map((message) => {
+        return <Message key={message.id} author={message.author} message={message.message} />
     });
 
     return (

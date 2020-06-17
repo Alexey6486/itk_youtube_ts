@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "./style.module.css"
 import UserBlock from "./userBlock/UserBlock";
-import { UsersInChatRoomType } from "../Dialogs";
+import { UsersInChatRoomType } from "../../../redux/store";
 
 type PropsType = {
-    usersinchatroom: Array<UsersInChatRoomType>
+    usersInChatRoom: Array<UsersInChatRoomType>
 }
 
 function UsersList(props: PropsType) {
 
-    let usersInChatRoomMap = props.usersinchatroom.map((user) => {
+    const {usersInChatRoom} = props;
+
+    let usersInChatRoomMap = usersInChatRoom.map((user) => {
         return <UserBlock key={user.id} dialogUrl={user.dialogUrl} userName={user.userName} />
     });
 

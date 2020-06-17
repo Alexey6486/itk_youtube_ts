@@ -6,26 +6,23 @@ import Aside from "./components/aside/Aside";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
 import styles from './App.module.css'
-import {BrowserRouter, Route} from "react-router-dom";
-
+import {Route} from "react-router-dom";
 
 function App() {
     return (
-        <BrowserRouter>
-            <div className={styles.wrapper}>
-                <Header/>
-                <div className="container">
-                    <div className={styles.mainContent}>
-                        <Aside/>
-                        <div className={styles.contentInner}>
-                            <Route path="/profile" component={Profile}/>
-                            <Route path="/dialogs" component={Dialogs}/>
-                        </div>
+        <div className={styles.wrapper}>
+            <Header/>
+            <div className="container">
+                <div className={styles.mainContent}>
+                    <Aside/>
+                    <div className={styles.contentInner}>
+                        <Route path="/profile" render={() => <Profile />}/>
+                        <Route path="/dialogs" render={() => <Dialogs />}/>
                     </div>
                 </div>
-                <Footer/>
             </div>
-        </BrowserRouter>
+            <Footer/>
+        </div>
     );
 }
 

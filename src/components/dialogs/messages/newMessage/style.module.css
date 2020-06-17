@@ -31,15 +31,22 @@
     background-color: transparent;
     font-size: 14px;
     display: flex;
-    align-self: center;
+    align-items: center;
     height: 30px;
     justify-content: center;
     color: #444444;
     padding: 0 30px;
     cursor: pointer;
     transition: all linear 200ms;
+    text-transform: uppercase;
 }
 .newMessageForm>button:hover{
     color: #eaeaea;
     background-color: #ffa405;
+}
+.newMessageForm>button:focus{
+    outline: none;
+}
+.newMessageForm.err>textarea::placeholder{
+    color: tomato;
 }
