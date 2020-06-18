@@ -18,6 +18,17 @@ export type UsersInChatRoomType = {
 export type AsideBlockType = {
 
 }
+export type UsersType = {
+    id: number
+    name: string
+    location: LocationType
+    status: string
+    followed: boolean
+}
+export type LocationType = {
+    country: string
+    city: string
+}
 
 export type ProfilePageType = {
     posts: Array<PostsType>
@@ -28,14 +39,20 @@ export type MessagesPageType = {
     usersInChatRoom: Array<UsersInChatRoomType>
     textareaInput: string
 }
+export type UsersPageType = {
+    users: Array<UsersType>
+}
 
 export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
+    usersPage: UsersPageType
 }
-export type DispatchType = (action: ActionsType) => void
 
-export type ActionsType = AddPostACType | NewTextPostACType | AddMsgACType | NewTextMsgACType;
+//export type DispatchType = (action: ActionsType) => void
+
+//export type ActionsType = AddPostACType | NewTextPostACType | AddMsgACType | NewTextMsgACType;
+
 /*
 export let store = {
     _state: {

@@ -1,4 +1,4 @@
-import {ActionsType, PostsType, ProfilePageType} from "./store";
+import {PostsType, ProfilePageType} from "./store";
 
 const ADD_POST = "ADD-POST";
 const NEW_POST_TEXT = "NEW-TEXT";
@@ -11,6 +11,10 @@ export type NewTextPostACType = {
     type: typeof NEW_POST_TEXT,
     text: string
 }
+
+type ActionsType = AddPostACType | NewTextPostACType;
+
+export type DispatchTypeProfileReducer = (action: ActionsType) => void
 
 /* Action creators are callbacks we use as a dispatch param on target page (AddPost.tsx) */
 export const addPostActionCreator = ():AddPostACType => {

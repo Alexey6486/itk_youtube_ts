@@ -1,4 +1,4 @@
-import {ActionsType, MessagesPageType} from "./store";
+import {MessagesPageType} from "./store";
 
 const ADD_MSG = "ADD-MSG";
 const NEW_MSG_TEXT = "NEW-MSG-TEXT";
@@ -10,6 +10,10 @@ export type NewTextMsgACType = {
     type: typeof NEW_MSG_TEXT,
     text: string
 }
+
+type ActionsType = AddMsgACType | NewTextMsgACType;
+
+export type DispatchTypeDialogsReducer = (action: ActionsType) => void
 
 export const addMsgActionCreator = ():AddMsgACType => {
     return {

@@ -7,6 +7,7 @@ import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
 import styles from './App.module.css'
 import {Route} from "react-router-dom";
+import UsersContainer from "./components/users/UsersContainer";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <div className={styles.contentInner}>
                         <Route path="/profile" render={() => <Profile />}/>
                         <Route path="/dialogs" render={() => <Dialogs />}/>
+                        <Route path="/users" render={() => <UsersContainer />}/>
                     </div>
                 </div>
             </div>

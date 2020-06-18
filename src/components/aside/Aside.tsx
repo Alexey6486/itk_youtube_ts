@@ -14,7 +14,7 @@ function Aside() {
                         <NavLink to="/dialogs" activeClassName={styles.active}>Chat room</NavLink>
                     </li>
                     <li>
-                        <NavLink to="#">Navigation link 3</NavLink>
+                        <NavLink to="/users" activeClassName={styles.active}>Users</NavLink>
                     </li>
                 </ul>
             </nav>
