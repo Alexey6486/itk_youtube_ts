@@ -1,5 +1,6 @@
 import profileReducer, { AddPostACType, NewTextPostACType } from "./profile-reducer"
 import dialogsReducer, {AddMsgACType, NewTextMsgACType} from "./dialogs-reducer";
+import {NewsStateType} from "./news-reducer";
 
 export type PostsType = {
     message: string
@@ -47,6 +48,7 @@ export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
     usersPage: UsersPageType
+    newsPage: Array<NewsStateType>
 }
 
 //export type DispatchType = (action: ActionsType) => void

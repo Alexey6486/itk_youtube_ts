@@ -1,0 +1,56 @@
+.newsWrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+.newsWrap a{
+    cursor: pointer;
+}
+.newsWrap>h3{
+    color: #444444;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.newsItem{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #888888;
+}
+.addNewsBlock{
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.addNewsBlock>input{
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    height: 30px;
+    align-items: center;
+    padding: 0 10px;
+    color: #333333;
+}
+.addNewsBlock>button{
+    border: 1px solid #ffa405;
+    background-color: transparent;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    justify-content: center;
+    color: #444444;
+    padding: 0 30px;
+    cursor: pointer;
+    transition: all linear 200ms;
+    text-transform: uppercase;
+}
+.addNewsBlock>button:hover{
+    color: #eaeaea;
+    background-color: #ffa405;
+}
+.addNewsBlock>button:focus{
+    outline: none;
+}
