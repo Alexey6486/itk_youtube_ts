@@ -1,0 +1,32 @@
+.paginationWrap{
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.paginationWrap>button{
+    margin-right: 5px;
+    background-color: #ffffff;
+    color: #555555;
+    cursor: pointer;
+    border: 1px solid #555555;
+}
+.paginationWrap>button:hover,
+.paginationWrap>button.currentPage{
+    background-color: #ffa405;
+    color: #ffffff;
+    border: 1px solid #ffa405;
+}
+.paginationWrap>button:focus {
+    outline: none;
+}
+.paginationWrap>button.paginationArrowBtn{
+    background-color: #555555;
+    color: #ffa405;
+    border: 1px solid #555555;
+}
+.paginationWrap>button.paginationArrowBtn:hover{
+    background-color: #ffffff;
+    color: #555555;
+    border: 1px solid #555555;
+}

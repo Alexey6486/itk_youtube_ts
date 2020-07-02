@@ -3,6 +3,7 @@ import s from './style.module.css'
 import {ApiUsersType} from "../../redux/store";
 import axios from 'axios';
 import userPhoto from '../../assets/images/post/user.png'
+import { Pagination } from "../pagination/Pagination";
 
 type PropsType = {
     users: Array<ApiUsersType>
@@ -17,24 +18,6 @@ type PropsType = {
 }
 
 class Users extends React.Component<PropsType> {
-
-    // constructor(props: PropsType) {
-    //     super(props);
-    //     this.props = props;
-    // }
-
-    //const {users, followUser, unfollowUser, setUsers} = this.props;
-
-    // let getUsers = () => {
-    //     if (users.length === 0) {
-    //         axios
-    //             .get("https://social-network.samuraijs.com/api/1.0/users")
-    //             .then(res => {
-    //                 setUsers(res.data.items);
-    //             });
-    //     }
-    // };
-    //usersMap2 = this.props
 
     onPageChange = (page: number) => {
         this.props.setCurrentPage(page);
@@ -58,13 +41,6 @@ class Users extends React.Component<PropsType> {
 
     render() {
 
-        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-
-        const pages = [];
-        for (let i=1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-
         const usersMap = this.props.users.map(user => {
 
             const friend = user.followed ? 'yes' : 'no';
@@ -85,15 +61,13 @@ class Users extends React.Component<PropsType> {
             )
         });
 
-        const pagesMap = pages.map(page => {
-            return <button className={page === this.props.currentPage ? s.currentPage : ""} onClick={(e) => this.onPageChange(page)}>{page}</button>
-        });
-
         return (
             <>
-                <div className={s.paginationWrap}>
-                    {pagesMap}
-                </div>
+                <Pagination totalItemsCount={this.props.totalUsersCount}
+                            pageSize={this.props.pageSize}
+                            currentPage={this.props.currentPage}
+                            changePageFunction={this.onPageChange}
+                            portionSize={5}/>
                 {/*<button onClick={getUsers}>get users</button>*/}
                 <div>{usersMap}</div>
             </>
