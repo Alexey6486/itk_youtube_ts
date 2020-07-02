@@ -1,6 +1,31 @@
-.userWrap{
+.usersWrap{
     border: 1px solid #EAEAEA;
     padding: 10px;
     width: 100%;
     margin-bottom: 5px;
+}
+.userWrap{
+    border: 1px solid #EAEAEA;
+}
+.paginationWrap{
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.paginationWrap>button{
+    margin-right: 5px;
+    background-color: #ffffff;
+    color: #555555;
+    cursor: pointer;
+    border: 1px solid #555555;
+}
+.paginationWrap>button:hover,
+.paginationWrap>button.currentPage{
+    background-color: #ffa405;
+    color: #ffffff;
+    border: 1px solid #ffa405;
+}
+.paginationWrap>button:focus {
+    outline: none;
 }

@@ -26,6 +26,17 @@ export type UsersType = {
     status: string
     followed: boolean
 }
+export type PhotoType = {
+    small: string | null
+    large: string | null
+}
+export type ApiUsersType = {
+    id: number
+    name: string
+    photos: PhotoType
+    status: string | null
+    followed: boolean
+}
 export type LocationType = {
     country: string
     city: string
@@ -41,7 +52,10 @@ export type MessagesPageType = {
     textareaInput: string
 }
 export type UsersPageType = {
-    users: Array<UsersType>
+    users: Array<ApiUsersType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 export type StateType = {

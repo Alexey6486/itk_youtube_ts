@@ -11,6 +11,8 @@ import UsersContainer from "./components/users/UsersContainer";
 import NewsContainer from "./components/news/NewsContainer";
 
 function App() {
+
+
     return (
         <div className={styles.wrapper}>
             <Header/>

@@ -1,8 +1,10 @@
-import {UsersPageType} from "./store";
+import {UsersPageType, ApiUsersType} from "./store";
 
 const FOLLOW_USER = "FOLLOW-USER";
 const UNFOLLOW_USER = "UNFOLLOW-USER";
 const SET_USERS = "SET-USERS";
+const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
+const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 
 type FollowUserACType = {
     type: typeof FOLLOW_USER
@@ -14,9 +16,18 @@ type UnfollowUserACType = {
 }
 type SetUsersACType = {
     type: typeof SET_USERS
+    users: Array<ApiUsersType>
+}
+type SetCurrentPageACType = {
+    type: typeof SET_CURRENT_PAGE
+    currentPage: number
+}
+type SetTotalUserCountACType = {
+    type: typeof SET_TOTAL_USERS_COUNT
+    totalUsersCount: number
 }
 
-type ActionsType = FollowUserACType | UnfollowUserACType | SetUsersACType;
+type ActionsType = FollowUserACType | UnfollowUserACType | SetUsersACType | SetCurrentPageACType | SetTotalUserCountACType;
 
 export type DispatchTypeUsersReducer = (action: ActionsType) => void
 
@@ -32,21 +43,45 @@ export const unfollowUserActionCreator = (id: number):UnfollowUserACType => {
         id: id
     };
 };
-export const setUserActionCreator = ():SetUsersACType => {
+export const setUserActionCreator = (users: Array<ApiUsersType>):SetUsersACType => {
     return {
         type: SET_USERS,
+        users: users
+    };
+};
+export const setCurrentPageActionCreator = (currentPage: number):SetCurrentPageACType => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage: currentPage
+    };
+};
+export const setTotalUserCountActionCreator = (totalUsersCount: number):SetTotalUserCountACType => {
+    return {
+        type: SET_TOTAL_USERS_COUNT,
+        totalUsersCount: totalUsersCount
     };
 };
 
 const initState = {
-    users: [
-        {id: 15, followed: false, name: 'David', location: {country: 'Russia', city: 'Moscow'}, status: 'Daily commute'},
-        {id: 16, followed: true, name: 'Marry', location: {country: 'Russia', city: 'Vladimir'}, status: 'At work'},
-    ],
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 };
 
 const usersReducer = (state: UsersPageType = initState, action: ActionsType) => {
+
     switch(action.type) {
+
+        case SET_USERS:
+            return {...state, users: action.users};
+
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage};
+
+        case SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.totalUsersCount};
+
         case FOLLOW_USER:
             const followArr = [...state.users];
             followArr.find(user => {
@@ -55,6 +90,7 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
                 }
             });
             return {...state, users: followArr};
+
         case UNFOLLOW_USER:
             const unfollowArr = [...state.users];
             unfollowArr.find(user => {
@@ -63,8 +99,7 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
                 }
             });
             return {...state, users: unfollowArr};
-        case SET_USERS:
-            return state;
+
         default:
             return state;
             //throw new Error('Undefined action type in usersReducer.');
