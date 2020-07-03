@@ -1,5 +1,3 @@
-import profileReducer, { AddPostACType, NewTextPostACType } from "./profile-reducer"
-import dialogsReducer, {AddMsgACType, NewTextMsgACType} from "./dialogs-reducer";
 import {NewsStateType} from "./news-reducer";
 
 export type PostsType = {
