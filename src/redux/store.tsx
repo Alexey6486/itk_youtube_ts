@@ -17,6 +17,21 @@ export type UsersInChatRoomType = {
 export type AsideBlockType = {
 
 }
+
+export type UserProfileContactsType = {
+    github: string | null
+    vk: string | null
+    facebook: string | null
+    instagram: string | null
+    twitter: string | null
+    website: string | null
+    youtube: string | null
+    mainLink: string | null
+}
+export type PhotoType = {
+    small: string | null
+    large: string | null
+}
 export type UsersType = {
     id: number
     name: string
@@ -24,10 +39,16 @@ export type UsersType = {
     status: string
     followed: boolean
 }
-export type PhotoType = {
-    small: string | null
-    large: string | null
+export type UserProfileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    fullName: string
+    contacts: UserProfileContactsType
+    photos: PhotoType
+    aboutMe: string
 }
+
 export type ApiUsersType = {
     id: number
     name: string
@@ -54,6 +75,7 @@ export type UsersPageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export type StateType = {
@@ -61,6 +83,7 @@ export type StateType = {
     messagesPage: MessagesPageType
     usersPage: UsersPageType
     newsPage: Array<NewsStateType>
+    userProfilePage: UserProfileType
 }
 
 //export type DispatchType = (action: ActionsType) => void

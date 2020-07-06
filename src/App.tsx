@@ -9,9 +9,10 @@ import styles from './App.module.css'
 import {Route} from "react-router-dom";
 import UsersContainer from "./components/users/UsersContainer";
 import NewsContainer from "./components/news/NewsContainer";
+import UserProfileContainer from "./components/userProfile/UserProfileContainer";
+
 
 function App() {
-
 
     return (
         <div className={styles.wrapper}>
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/dialogs" render={() => <Dialogs />}/>
                         <Route path="/users" render={() => <UsersContainer />}/>
                         <Route path="/news" render={() => <NewsContainer />}/>
+                        <Route path="/userprofile" render={() => <UserProfileContainer />}/>
                     </div>
                 </div>
             </div>

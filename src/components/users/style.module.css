@@ -1,12 +1,4 @@
-.usersWrap{
-    border: 1px solid #EAEAEA;
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 5px;
-}
-.userWrap{
-    border: 1px solid #EAEAEA;
-    margin-bottom: 5px;
-    padding: 10px;
+.userProfileTitle{
+    text-transform: uppercase;
 }
 

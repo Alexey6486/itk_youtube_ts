@@ -5,6 +5,7 @@ const UNFOLLOW_USER = "UNFOLLOW-USER";
 const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
+const LOADING = "LOADING";
 
 type FollowUserACType = {
     type: typeof FOLLOW_USER
@@ -26,39 +27,49 @@ type SetTotalUserCountACType = {
     type: typeof SET_TOTAL_USERS_COUNT
     totalUsersCount: number
 }
+type SetLoadingACType = {
+    type: typeof LOADING
+    isFetching: boolean
+}
 
-type ActionsType = FollowUserACType | UnfollowUserACType | SetUsersACType | SetCurrentPageACType | SetTotalUserCountACType;
+type ActionsType = FollowUserACType | UnfollowUserACType | SetUsersACType | SetCurrentPageACType | SetTotalUserCountACType | SetLoadingACType;
 
 export type DispatchTypeUsersReducer = (action: ActionsType) => void
 
-export const followUserActionCreator = (id: number):FollowUserACType => {
+export const followUser = (id: number):FollowUserACType => {
     return {
         type: FOLLOW_USER,
         id: id
     };
 };
-export const unfollowUserActionCreator = (id: number):UnfollowUserACType => {
+export const unfollowUser = (id: number):UnfollowUserACType => {
     return {
         type: UNFOLLOW_USER,
         id: id
     };
 };
-export const setUserActionCreator = (users: Array<ApiUsersType>):SetUsersACType => {
+export const setUsers = (users: Array<ApiUsersType>):SetUsersACType => {
     return {
         type: SET_USERS,
         users: users
     };
 };
-export const setCurrentPageActionCreator = (currentPage: number):SetCurrentPageACType => {
+export const setCurrentPage = (currentPage: number):SetCurrentPageACType => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: currentPage
     };
 };
-export const setTotalUserCountActionCreator = (totalUsersCount: number):SetTotalUserCountACType => {
+export const setTotalUsersCount = (totalUsersCount: number):SetTotalUserCountACType => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalUsersCount: totalUsersCount
+    };
+};
+export const setLoading = (isFetching: boolean):SetLoadingACType => {
+    return {
+        type: LOADING,
+        isFetching: isFetching
     };
 };
 
@@ -67,6 +78,7 @@ const initState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false,
 };
 
 const usersReducer = (state: UsersPageType = initState, action: ActionsType) => {
@@ -81,6 +93,9 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
 
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.totalUsersCount};
+
+        case LOADING:
+            return {...state, isFetching: action.isFetching};
 
         case FOLLOW_USER:
             const followArr = [...state.users];
