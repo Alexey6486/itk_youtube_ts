@@ -4,6 +4,7 @@ import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 import newsReducer from "./news-reducer";
 import userProfile from "./userProfile-reducer";
+import {authReducer} from "./auth-reducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
     usersPage: usersReducer,
     newsPage: newsReducer,
     userProfilePage: userProfile,
+    auth: authReducer,
 });
 
 const store = createStore(reducers);

@@ -5,4 +5,24 @@
     font-weight: bold;
     color: #333333;
     text-transform: uppercase;
+
+}
+.headerContent{
+    display: flex;
+    justify-content: space-between;
+    height: inherit;
+    align-items: center;
+}
+.headerContent__logo{
+
+}
+.headerContent__loginBlock{
+
+}
+.headerContent__loginBlock a{
+    color: #333333;
+    transition: color linear 150ms;
+}
+.headerContent__loginBlock a:hover{
+    color: #ffa405;
 }
