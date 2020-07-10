@@ -6,13 +6,14 @@ import {NavLink} from "react-router-dom";
 
 type PropsType = {
     users: Array<ApiUsersType>
-    followUser: (id: number) => void
-    unfollowUser: (id: number) => void
+    followUserApi: (id: number) => void
+    unfollowUserApi: (id: number) => void
+    disabledIdArr: Array<number>
 }
 
 export const Users = (props: PropsType) => {
 
-    const {users, followUser, unfollowUser} = props;
+    const {users, followUserApi, unfollowUserApi, disabledIdArr} = props;
 
     const usersMap = users.map(user => {
 
@@ -20,7 +21,7 @@ export const Users = (props: PropsType) => {
         const followBtn = user.followed ? 'unfollow' : 'follow';
 
         const onclickHandler = () => {
-            !user.followed ? followUser(user.id) : unfollowUser(user.id);
+            !user.followed ? followUserApi(user.id) : unfollowUserApi(user.id)
         };
 
         return (
@@ -29,7 +30,12 @@ export const Users = (props: PropsType) => {
                 <div>photo: <NavLink to={`/userprofile/${user.id}`}><img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="avatar"/></NavLink></div>
                 <div>Status: {user.status}</div>
                 <div>Friend: {friend}</div>
-                <button onClick={onclickHandler}>{followBtn}</button>
+                <button onClick={onclickHandler}
+                        disabled={disabledIdArr.some(userId => userId === user.id)}>
+
+                    {followBtn}
+
+                </button>
             </div>
         )
     });

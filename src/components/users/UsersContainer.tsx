@@ -5,13 +5,15 @@ import {
     unfollowUser,
     setUsers,
     setCurrentPage,
-    setLoading, setTotalUsersCount
+    setLoading,
+    setTotalUsersCount,
+    followingInProgress
 } from "../../redux/users-reducer";
 import React from "react";
-import axios from "axios";
 import {Pagination} from "../common/pagination/Pagination";
 import {Users} from "./Users";
 import { LoadingIcon } from "../common/loadingIcon/LoadingIcon";
+import {usersAPI} from "../../api/api";
 
 type PropsType = {
     users: Array<ApiUsersType>
@@ -25,31 +27,62 @@ type PropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void
     isFetching: boolean
     setLoading: (isFetching: boolean) => void
+    followingInProgress: (isFetching: boolean, userId: number) => void
+    disabledIdArr: Array<number>
 }
 
 class UsersContainer extends React.Component<PropsType> {
 
+
     onPageChange = (page: number) => {
         this.props.setLoading(true);
         this.props.setCurrentPage(page);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+        usersAPI.getUsers(page, this.props.pageSize)
             .then(res => {
                 this.props.setLoading(false);
-                this.props.setUsers(res.data.items);
+                this.props.setUsers(res.items);
             });
     };
 
     componentDidMount(): void {
         this.props.setLoading(true);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(res => {
                 this.props.setLoading(false);
-                this.props.setUsers(res.data.items);
-                this.props.setTotalUsersCount(res.data.totalCount);
+                this.props.setUsers(res.items);
+                this.props.setTotalUsersCount(res.totalCount);
             });
-    }
+    };
+
+    followUserApi = (userId: number) => {
+        this.props.followingInProgress(true, userId);
+        usersAPI.followUserAxios(userId)
+            .then(res => {
+                if (res.resultCode === 0) {
+                    followUser(userId);
+                }
+                this.props.followingInProgress(false, userId);
+            });
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(res => {
+                this.props.setUsers(res.items);
+            });
+    };
+
+    unfollowUserApi = (userId: number) => {
+        this.props.followingInProgress(true, userId);
+        usersAPI.unfollowUserAxios(userId)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    unfollowUser(userId);
+                }
+                this.props.followingInProgress(false, userId);
+            });
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(res => {
+                this.props.setUsers(res.items);
+            });
+    };
 
     render() {
 
@@ -65,9 +98,10 @@ class UsersContainer extends React.Component<PropsType> {
                 {
                     this.props.isFetching
                         ? <LoadingIcon />
-                        : <Users followUser={this.props.followUser}
-                                 unfollowUser={this.props.unfollowUser}
-                                 users={this.props.users}/>
+                        : <Users followUserApi={this.followUserApi}
+                                 unfollowUserApi={this.unfollowUserApi}
+                                 users={this.props.users}
+                                 disabledIdArr={this.props.disabledIdArr}/>
                 }
 
             </>
@@ -82,7 +116,8 @@ const mapToStateProps = (state: StateType) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        disabledIdArr: state.usersPage.disabledIdArr,
     }
 };
 // const mapDispatchToProps = (dispatch: DispatchTypeUsersReducer) => {
@@ -98,4 +133,4 @@ const mapToStateProps = (state: StateType) => {
 
 
 
-export default connect(mapToStateProps, {followUser, unfollowUser, setUsers, setCurrentPage, setTotalUsersCount, setLoading})(UsersContainer);
+export default connect(mapToStateProps, {followingInProgress, followUser, unfollowUser, setUsers, setCurrentPage, setTotalUsersCount, setLoading})(UsersContainer);

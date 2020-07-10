@@ -13,7 +13,7 @@ type PropsType = {
 export const Header = (props: PropsType) => {
 
     const {isAuth, login, email, id} = props;
-debugger
+
     return (
         <>
             <header className={styles.header}>

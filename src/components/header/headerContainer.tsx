@@ -23,7 +23,6 @@ class HeaderContainer extends Component<PropsType> {
                 withCredentials: true
             })
             .then(res => {
-                debugger
                 if (res.data.resultCode === 0) {
                     this.props.setAuthUserData(res.data.data)
                 }
@@ -31,7 +30,6 @@ class HeaderContainer extends Component<PropsType> {
     }
 
     render() {
-        debugger
         return (
             <Header {...this.props}/>
         );

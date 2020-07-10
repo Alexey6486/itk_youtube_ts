@@ -6,6 +6,7 @@ const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 const LOADING = "LOADING";
+const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
 
 type FollowUserACType = {
     type: typeof FOLLOW_USER
@@ -31,8 +32,19 @@ type SetLoadingACType = {
     type: typeof LOADING
     isFetching: boolean
 }
+type FollowingInProgressACType = {
+    type: typeof FOLLOWING_IN_PROGRESS
+    isFetching: boolean
+    userId: number
+}
 
-type ActionsType = FollowUserACType | UnfollowUserACType | SetUsersACType | SetCurrentPageACType | SetTotalUserCountACType | SetLoadingACType;
+type ActionsType = FollowUserACType
+                 | UnfollowUserACType
+                 | SetUsersACType
+                 | SetCurrentPageACType
+                 | SetTotalUserCountACType
+                 | SetLoadingACType
+                 | FollowingInProgressACType;
 
 export type DispatchTypeUsersReducer = (action: ActionsType) => void
 
@@ -72,6 +84,13 @@ export const setLoading = (isFetching: boolean):SetLoadingACType => {
         isFetching: isFetching
     };
 };
+export const followingInProgress = (isFetching: boolean, userId: number):FollowingInProgressACType => {
+    return {
+        type: FOLLOWING_IN_PROGRESS,
+        isFetching,
+        userId,
+    };
+};
 
 const initState = {
     users: [],
@@ -79,6 +98,7 @@ const initState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
+    disabledIdArr: [],
 };
 
 const usersReducer = (state: UsersPageType = initState, action: ActionsType) => {
@@ -99,21 +119,22 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
 
         case FOLLOW_USER:
             const followArr = [...state.users];
-            followArr.find(user => {
-                if (user.id === action.id) {
-                    user.followed = true;
-                }
-            });
+            followArr.map(user => user.id === action.id ? {...user, followed: true} : user);
             return {...state, users: followArr};
 
         case UNFOLLOW_USER:
             const unfollowArr = [...state.users];
-            unfollowArr.find(user => {
-                if (user.id === action.id) {
-                    user.followed = false;
-                }
-            });
+            unfollowArr.map(user => user.id === action.id ? {...user, followed: false} : user);
             return {...state, users: unfollowArr};
+
+        case FOLLOWING_IN_PROGRESS:
+            debugger
+            return {
+                ...state,
+                disabledIdArr: action.isFetching
+                    ? [...state.disabledIdArr, action.userId]
+                    : state.disabledIdArr.filter(userId => userId !== action.userId)
+            };
 
         default:
             return state;
@@ -122,3 +143,12 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
 };
 
 export default usersReducer;
+
+// case UNFOLLOW_USER:
+//     const unfollowArr = [...state.users];
+// unfollowArr.find(user => {
+//     if (user.id === action.id) {
+//         user.followed = false;
+//     }
+// });
+// return {...state, users: unfollowArr};

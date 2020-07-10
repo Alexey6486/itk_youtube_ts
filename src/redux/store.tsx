@@ -71,12 +71,14 @@ export type MessagesPageType = {
     usersInChatRoom: Array<UsersInChatRoomType>
     textareaInput: string
 }
+
 export type UsersPageType = {
     users: Array<ApiUsersType>
     pageSize: number
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    disabledIdArr: Array<number>
 }
 
 export type StateType = {

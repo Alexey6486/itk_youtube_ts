@@ -41,7 +41,7 @@ export const Pagination = (props: PropsType) => {
     const pagesMap = pages
                         .filter(item => item >= firstElNumInPortion && item <= lastElNumInPortion)
                         .map(page => {
-                            return <button className={page === currentPage ? s.currentPage : ""} onClick={() => onPageChange(page)}>{page}</button>
+                            return <button key={page} className={page === currentPage ? s.currentPage : ""} onClick={() => onPageChange(page)}>{page}</button>
                         });
 
     return(
