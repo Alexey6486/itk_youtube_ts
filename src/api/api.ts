@@ -21,6 +21,20 @@ export const usersAPI = {
         return instance
                 .delete(`follow/${userId}`)
                 .then(res => res.data)
+    },
+    getProfile(userId: string) {
+        return instance
+            .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+            .then(res => res)
+    },
+};
+
+export const authApi = {
+    authMe() {
+        return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+                    withCredentials: true
+                })
+                .then(res => res);
     }
 };
 

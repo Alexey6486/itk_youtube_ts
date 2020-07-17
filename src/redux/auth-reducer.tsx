@@ -1,3 +1,4 @@
+import {authApi} from "../api/api";
 
 const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
 
@@ -20,7 +21,9 @@ export const setAuthUserData = (userData: AuthUserData): SetUserDataACType => {
   }
 };
 
+
 type ActionType = SetUserDataACType;
+export type DispatchTypeAuthReducer = (action: ActionType) => void
 
 const initState: AuthUserData = {
     id: null,
@@ -36,4 +39,13 @@ export const authReducer = (state: AuthUserData = initState, action: ActionType)
         default:
             return state;
     }
+};
+
+export const authThunkCreator = () => (dispatch: DispatchTypeAuthReducer) => {
+    authApi.authMe()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setAuthUserData(res.data.data));
+            }
+        });
 };

@@ -1,4 +1,5 @@
 import {UserProfileType} from "./store";
+import {usersAPI} from "../api/api";
 
 const SET_USER_PROFILE_DATA = 'SET-USER-DATA';
 
@@ -7,7 +8,7 @@ type SetUserDataACType = {
     userProfile: UserProfileType
 }
 
-export const setUserProfileData = (userProfile: UserProfileType): SetUserDataACType  => {
+export const setUserProfileData = (userProfile: UserProfileType): SetUserDataACType => {
     return {
         type: SET_USER_PROFILE_DATA,
         userProfile: userProfile,
@@ -42,12 +43,19 @@ const initState = {
 
 const userProfile = (state: UserProfileType = initState, action: ActionsType) => {
 
-    switch(action.type) {
+    switch (action.type) {
         case SET_USER_PROFILE_DATA:
             return {...action.userProfile};
         default:
             return state;
     }
+};
+
+export const getProfileThunkCreator = (userId: string) => (dispatch: DispatchTypeUsersReducer) => {
+    usersAPI.getProfile(userId)
+        .then(res => {
+            dispatch(setUserProfileData(res.data));
+        })
 };
 
 export default userProfile;

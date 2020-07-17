@@ -10,6 +10,7 @@ import UsersContainer from "./components/users/UsersContainer";
 import NewsContainer from "./components/news/NewsContainer";
 import UserProfileContainer from "./components/userProfile/UserProfileContainer";
 import HeaderContainer from './components/header/headerContainer';
+import {Login} from "./components/login/Login";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/users" render={() => <UsersContainer />}/>
                         <Route path="/news" render={() => <NewsContainer />}/>
                         <Route path="/userprofile/:userId" render={() => <UserProfileContainer />}/>
+                        <Route path="/login" render={() => <Login />}/>
                     </div>
                 </div>
             </div>

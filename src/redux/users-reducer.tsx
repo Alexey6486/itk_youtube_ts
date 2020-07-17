@@ -1,4 +1,5 @@
 import {UsersPageType, ApiUsersType} from "./store";
+import {usersAPI} from "../api/api";
 
 const FOLLOW_USER = "FOLLOW-USER";
 const UNFOLLOW_USER = "UNFOLLOW-USER";
@@ -118,17 +119,18 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
             return {...state, isFetching: action.isFetching};
 
         case FOLLOW_USER:
-            const followArr = [...state.users];
-            followArr.map(user => user.id === action.id ? {...user, followed: true} : user);
+            debugger
+            let followArr = [...state.users];
+            followArr = followArr.map(user => user.id === action.id ? {...user, followed: true} : user);
             return {...state, users: followArr};
 
         case UNFOLLOW_USER:
-            const unfollowArr = [...state.users];
-            unfollowArr.map(user => user.id === action.id ? {...user, followed: false} : user);
+            debugger
+            let unfollowArr = [...state.users];
+            unfollowArr = unfollowArr.map(user => user.id === action.id ? {...user, followed: false} : user);
             return {...state, users: unfollowArr};
 
         case FOLLOWING_IN_PROGRESS:
-            debugger
             return {
                 ...state,
                 disabledIdArr: action.isFetching
@@ -140,6 +142,59 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
             return state;
             //throw new Error('Undefined action type in usersReducer.');
     }
+};
+
+// short form:
+//
+//const getUsersThunkCreator = () => (dispatch: DispatchTypeUsersReducer) => {...}
+//
+// of:
+//
+// const getUsersThunkCreator = () => {
+//     return (dispatch: DispatchTypeUsersReducer) => {
+//         ...
+//     }
+// };
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: DispatchTypeUsersReducer) => {
+    dispatch(setLoading(true));
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(res => {
+            dispatch(setLoading(false));
+            dispatch(setUsers(res.items));
+            dispatch(setTotalUsersCount(res.totalCount));
+        });
+};
+
+export const getUsersOnPageChangeThunkCreator = (page: number, pageSize: number) => (dispatch: DispatchTypeUsersReducer) => {
+    dispatch(setLoading(true));
+    dispatch(setCurrentPage(page));
+    usersAPI.getUsers(page, pageSize)
+        .then(res => {
+            dispatch(setLoading(false));
+            dispatch(setUsers(res.items));
+        });
+};
+
+export const followUserThunkCreator = (userId: number) => (dispatch: DispatchTypeUsersReducer) => {
+    dispatch(followingInProgress(true, userId));
+    usersAPI.followUserAxios(userId)
+        .then(res => {
+            if (res.resultCode === 0) {
+                dispatch(followUser(userId));
+            }
+            dispatch(followingInProgress(false, userId));
+        });
+};
+export const unfollowUserThunkCreator = (userId: number) => (dispatch: DispatchTypeUsersReducer) => {
+    dispatch(followingInProgress(true, userId));
+    usersAPI.unfollowUserAxios(userId)
+        .then(res => {
+            if (res.resultCode === 0) {
+                dispatch(unfollowUser(userId));
+            }
+            dispatch(followingInProgress(false, userId));
+        });
 };
 
 export default usersReducer;

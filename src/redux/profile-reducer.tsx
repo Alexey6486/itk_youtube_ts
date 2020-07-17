@@ -1,4 +1,5 @@
 import {PostsType, ProfilePageType} from "./store";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const NEW_POST_TEXT = "NEW-TEXT";

@@ -1,87 +1,79 @@
 import {connect} from "react-redux";
 import {StateType, ApiUsersType} from "../../redux/store";
 import {
-    followUser,
-    unfollowUser,
-    setUsers,
-    setCurrentPage,
-    setLoading,
-    setTotalUsersCount,
-    followingInProgress
+    getUsersThunkCreator,
+    getUsersOnPageChangeThunkCreator,
+    unfollowUserThunkCreator,
+    followUserThunkCreator
 } from "../../redux/users-reducer";
 import React from "react";
 import {Pagination} from "../common/pagination/Pagination";
 import {Users} from "./Users";
 import { LoadingIcon } from "../common/loadingIcon/LoadingIcon";
-import {usersAPI} from "../../api/api";
 
 type PropsType = {
     users: Array<ApiUsersType>
-    followUser: (id: number) => void
-    unfollowUser: (id: number) => void
-    setUsers: (users: Array<ApiUsersType>) => void
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalUsersCount: number) => void
     isFetching: boolean
-    setLoading: (isFetching: boolean) => void
-    followingInProgress: (isFetching: boolean, userId: number) => void
     disabledIdArr: Array<number>
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
+    getUsersOnPageChangeThunkCreator: (page: number, pageSize: number) => void
+    followUserThunkCreator: (userId: number) => void
+    unfollowUserThunkCreator: (userId: number) => void
+    isAuth: boolean
 }
 
 class UsersContainer extends React.Component<PropsType> {
 
 
     onPageChange = (page: number) => {
-        this.props.setLoading(true);
-        this.props.setCurrentPage(page);
-        usersAPI.getUsers(page, this.props.pageSize)
-            .then(res => {
-                this.props.setLoading(false);
-                this.props.setUsers(res.items);
-            });
+        // this.props.setLoading(true);
+        // this.props.setCurrentPage(page);
+        // usersAPI.getUsers(page, this.props.pageSize)
+        //     .then(res => {
+        //         this.props.setLoading(false);
+        //         this.props.setUsers(res.items);
+        //     });
+        this.props.getUsersOnPageChangeThunkCreator(page, this.props.pageSize);
     };
 
     componentDidMount(): void {
-        this.props.setLoading(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(res => {
-                this.props.setLoading(false);
-                this.props.setUsers(res.items);
-                this.props.setTotalUsersCount(res.totalCount);
-            });
+        // this.props.setLoading(true);
+        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+        //     .then(res => {
+        //         this.props.setLoading(false);
+        //         this.props.setUsers(res.items);
+        //         this.props.setTotalUsersCount(res.totalCount);
+        //     });
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
     };
 
     followUserApi = (userId: number) => {
-        this.props.followingInProgress(true, userId);
-        usersAPI.followUserAxios(userId)
-            .then(res => {
-                if (res.resultCode === 0) {
-                    followUser(userId);
-                }
-                this.props.followingInProgress(false, userId);
-            });
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(res => {
-                this.props.setUsers(res.items);
-            });
+
+        // this.props.followingInProgress(true, userId);
+        // usersAPI.followUserAxios(userId)
+        //     .then(res => {
+        //         if (res.resultCode === 0) {
+        //             this.props.followUser(userId);
+        //         }
+        //         this.props.followingInProgress(false, userId);
+        //     });
+        this.props.followUserThunkCreator(userId);
     };
 
     unfollowUserApi = (userId: number) => {
-        this.props.followingInProgress(true, userId);
-        usersAPI.unfollowUserAxios(userId)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    unfollowUser(userId);
-                }
-                this.props.followingInProgress(false, userId);
-            });
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(res => {
-                this.props.setUsers(res.items);
-            });
+
+        // this.props.followingInProgress(true, userId);
+        // usersAPI.unfollowUserAxios(userId)
+        //     .then(res => {
+        //         if (res.data.resultCode === 0) {
+        //             this.props.unfollowUser(userId);
+        //         }
+        //         this.props.followingInProgress(false, userId);
+        //     });
+        this.props.unfollowUserThunkCreator(userId);
     };
 
     render() {
@@ -101,7 +93,8 @@ class UsersContainer extends React.Component<PropsType> {
                         : <Users followUserApi={this.followUserApi}
                                  unfollowUserApi={this.unfollowUserApi}
                                  users={this.props.users}
-                                 disabledIdArr={this.props.disabledIdArr}/>
+                                 disabledIdArr={this.props.disabledIdArr}
+                                 isAuth={this.props.isAuth}/>
                 }
 
             </>
@@ -118,8 +111,10 @@ const mapToStateProps = (state: StateType) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         disabledIdArr: state.usersPage.disabledIdArr,
+        isAuth: state.auth.isAuth
     }
 };
+
 // const mapDispatchToProps = (dispatch: DispatchTypeUsersReducer) => {
 //     return {
 //         followUser: (id: number) => {dispatch(followUserActionCreator(id))},
@@ -131,6 +126,7 @@ const mapToStateProps = (state: StateType) => {
 //     }
 // };
 
-
-
-export default connect(mapToStateProps, {followingInProgress, followUser, unfollowUser, setUsers, setCurrentPage, setTotalUsersCount, setLoading})(UsersContainer);
+export default connect(mapToStateProps, {unfollowUserThunkCreator,
+                                         followUserThunkCreator,
+                                         getUsersThunkCreator,
+                                         getUsersOnPageChangeThunkCreator})(UsersContainer);
