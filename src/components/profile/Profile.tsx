@@ -1,17 +1,19 @@
 import React from 'react';
 import styles from './style.module.css'
-import ProfileData from "./profileData/ProfileData";
+import ProfileDataContainer from "./profileData/ProfileDataContainer";
 import AddPostContainer from "./postsBlock/addpost/AddPostContainer";
 import PostsContainer from "./postsBlock/posts/PostsContainer";
+//import {AuthRedirectComponent} from "../hoc/withAuthRedirect";
 
-function Profile() {
+export const Profile = () => {
     return (
         <div className={styles.profileBlock}>
-            <ProfileData />
-            <AddPostContainer />
-            <PostsContainer />
+            <ProfileDataContainer/>
+            <AddPostContainer/>
+            <PostsContainer/>
         </div>
     );
-}
+};
 
-export default Profile;
+//export const AuthProfileComponent = AuthRedirectComponent(Profile);
+//jsx element type does not have any construct or call signatures

@@ -6,6 +6,7 @@ import newsReducer from "./news-reducer";
 import userProfile from "./userProfile-reducer";
 import {authReducer} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk';
+import {accountReducer} from "./account-reducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -14,8 +15,9 @@ const reducers = combineReducers({
     newsPage: newsReducer,
     userProfilePage: userProfile,
     auth: authReducer,
+    accountReducer
 });
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+export type AppRootState = ReturnType<typeof reducers>;
 
-export default store;
+export const store = createStore(reducers, applyMiddleware(thunkMiddleware));

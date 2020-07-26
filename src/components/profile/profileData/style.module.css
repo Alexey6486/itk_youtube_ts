@@ -37,3 +37,11 @@
     line-height: 1;
     font-weight: normal;
 }
+.profileStatusWrap{
+    margin-top: 5px;
+    color: #444444;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    line-height: 1;
+}

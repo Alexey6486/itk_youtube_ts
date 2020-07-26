@@ -29,7 +29,8 @@ export const Users = (props: PropsType) => {
         return (
             <div className={s.userWrap} key={user.id}>
                 <div>Name: <NavLink to={`/userprofile/${user.id}`}>{user.name}</NavLink></div>
-                <div>photo: <NavLink to={`/userprofile/${user.id}`}><img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="avatar"/></NavLink></div>
+                <div>photo: <NavLink to={`/userprofile/${user.id}`}><img
+                    src={user.photos.small !== null ? user.photos.small : userPhoto} alt="avatar"/></NavLink></div>
                 <div>Status: {user.status}</div>
                 <div>Friend: {friend}</div>
 
@@ -41,11 +42,9 @@ export const Users = (props: PropsType) => {
         )
     });
 
-    if (!isAuth) {
-        return <Redirect to={'/login'}/>;
-    }
     return (
         <div>{usersMap}</div>
     );
 
 };
+

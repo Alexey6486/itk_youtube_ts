@@ -1,5 +1,5 @@
 import {PostsType, ProfilePageType} from "./store";
-import {usersAPI} from "../api/api";
+
 
 const ADD_POST = "ADD-POST";
 const NEW_POST_TEXT = "NEW-TEXT";
@@ -36,6 +36,7 @@ const initState = {
         {message: 'See you later!', likes: '17'},
     ],
     textareaInput: "",
+    status: 'test',
 };
 
 /* This function is called in dispatch in store.tsx and returns the state, whether changed or not */

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.module.css';
 import Footer from "./components/footer/Footer";
 import Aside from "./components/aside/Aside";
-import Profile from "./components/profile/Profile";
+import ProfileContainer from "./components/profile/ProfileContainer";
 import Dialogs from "./components/dialogs/Dialogs";
 import styles from './App.module.css'
 import {Route} from "react-router-dom";
@@ -13,7 +13,7 @@ import HeaderContainer from './components/header/headerContainer';
 import {Login} from "./components/login/Login";
 
 
-function App() {
+export const App = () => {
 
     return (
         <div className={styles.wrapper}>
@@ -22,7 +22,7 @@ function App() {
                 <div className={styles.mainContent}>
                     <Aside/>
                     <div className={styles.contentInner}>
-                        <Route path="/profile" render={() => <Profile />}/>
+                        <Route path="/profile" render={() => <ProfileContainer />}/>
                         <Route path="/dialogs" render={() => <Dialogs />}/>
                         <Route path="/users" render={() => <UsersContainer />}/>
                         <Route path="/news" render={() => <NewsContainer />}/>
@@ -34,6 +34,5 @@ function App() {
             <Footer/>
         </div>
     );
-}
+};
 
-export default App;

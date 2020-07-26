@@ -10,6 +10,7 @@ import React from "react";
 import {Pagination} from "../common/pagination/Pagination";
 import {Users} from "./Users";
 import { LoadingIcon } from "../common/loadingIcon/LoadingIcon";
+import {Redirect} from "react-router";
 
 type PropsType = {
     users: Array<ApiUsersType>

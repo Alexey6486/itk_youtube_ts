@@ -1,5 +1,7 @@
 import {NewsStateType} from "./news-reducer";
 import {AuthUserData} from "./auth-reducer";
+import { UserProfileStateType } from "./userProfile-reducer";
+import {AccountStateType} from "./account-reducer";
 
 export type PostsType = {
     message: string
@@ -86,8 +88,9 @@ export type StateType = {
     messagesPage: MessagesPageType
     usersPage: UsersPageType
     newsPage: Array<NewsStateType>
-    userProfilePage: UserProfileType
+    userProfilePage: UserProfileStateType
     auth: AuthUserData
+    accountReducer: AccountStateType
 }
 
 //export type DispatchType = (action: ActionsType) => void

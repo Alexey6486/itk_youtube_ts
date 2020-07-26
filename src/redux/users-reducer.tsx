@@ -1,5 +1,5 @@
 import {UsersPageType, ApiUsersType} from "./store";
-import {usersAPI} from "../api/api";
+import {usersApi} from "../api/api";
 
 const FOLLOW_USER = "FOLLOW-USER";
 const UNFOLLOW_USER = "UNFOLLOW-USER";
@@ -158,7 +158,7 @@ const usersReducer = (state: UsersPageType = initState, action: ActionsType) => 
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: DispatchTypeUsersReducer) => {
     dispatch(setLoading(true));
-    usersAPI.getUsers(currentPage, pageSize)
+    usersApi.getUsers(currentPage, pageSize)
         .then(res => {
             dispatch(setLoading(false));
             dispatch(setUsers(res.items));
@@ -169,7 +169,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
 export const getUsersOnPageChangeThunkCreator = (page: number, pageSize: number) => (dispatch: DispatchTypeUsersReducer) => {
     dispatch(setLoading(true));
     dispatch(setCurrentPage(page));
-    usersAPI.getUsers(page, pageSize)
+    usersApi.getUsers(page, pageSize)
         .then(res => {
             dispatch(setLoading(false));
             dispatch(setUsers(res.items));
@@ -178,7 +178,7 @@ export const getUsersOnPageChangeThunkCreator = (page: number, pageSize: number)
 
 export const followUserThunkCreator = (userId: number) => (dispatch: DispatchTypeUsersReducer) => {
     dispatch(followingInProgress(true, userId));
-    usersAPI.followUserAxios(userId)
+    usersApi.followUserAxios(userId)
         .then(res => {
             if (res.resultCode === 0) {
                 dispatch(followUser(userId));
@@ -188,7 +188,7 @@ export const followUserThunkCreator = (userId: number) => (dispatch: DispatchTyp
 };
 export const unfollowUserThunkCreator = (userId: number) => (dispatch: DispatchTypeUsersReducer) => {
     dispatch(followingInProgress(true, userId));
-    usersAPI.unfollowUserAxios(userId)
+    usersApi.unfollowUserAxios(userId)
         .then(res => {
             if (res.resultCode === 0) {
                 dispatch(unfollowUser(userId));

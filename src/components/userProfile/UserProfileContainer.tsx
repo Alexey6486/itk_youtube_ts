@@ -2,15 +2,19 @@ import {connect} from "react-redux";
 import {StateType} from "../../redux/store";
 import React, {Component} from "react";
 import {UserProfile} from "./UserProfile";
-import {getProfileThunkCreator} from '../../redux/userProfile-reducer'
+import {getProfileThunkCreator, getStatusThunkCreator} from '../../redux/userProfile-reducer'
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 type MapStateToPropsType = {
     lookingForAJob: boolean
     fullName: string
+    aboutMe: string,
+    status: string | null,
+    id: number,
 }
 type MapDispatchToPropsType = {
     getProfileThunkCreator: (userId: string) => void
+    getStatusThunkCreator: (userId: string) => void
 }
 type userIdParamType = {
     userId: string
@@ -23,6 +27,7 @@ class UserProfileContainer extends Component<PropsType> {
     componentDidMount(): void {
         const userId = this.props.match.params.userId;
         this.props.getProfileThunkCreator(userId);
+        this.props.getStatusThunkCreator(userId);
     }
 
     render() {
@@ -34,11 +39,14 @@ class UserProfileContainer extends Component<PropsType> {
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
-        lookingForAJob: state.userProfilePage.lookingForAJob,
-        fullName: state.userProfilePage.fullName,
+        lookingForAJob: state.userProfilePage.userData.lookingForAJob,
+        fullName: state.userProfilePage.userData.fullName,
+        aboutMe: state.userProfilePage.userData.aboutMe,
+        status: state.userProfilePage.userStatus.status,
+        id: state.userProfilePage.userData.userId,
     };
 };
 
 const WithURLDataContainerComponent = withRouter(UserProfileContainer);
 
-export default connect(mapStateToProps, {getProfileThunkCreator})(WithURLDataContainerComponent);
+export default connect(mapStateToProps, {getProfileThunkCreator, getStatusThunkCreator})(WithURLDataContainerComponent);

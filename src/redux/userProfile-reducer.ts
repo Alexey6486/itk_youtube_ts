@@ -1,11 +1,24 @@
 import {UserProfileType} from "./store";
-import {usersAPI} from "../api/api";
+import {profileApi} from "../api/api";
 
-const SET_USER_PROFILE_DATA = 'SET-USER-DATA';
+type UserStatusType = {
+    status: string | null
+}
+export type UserProfileStateType = {
+    userData: UserProfileType
+    userStatus: UserStatusType
+}
+
+const SET_USER_PROFILE_DATA = 'SET-USER-PROFILE-DATA';
+const SET_USER_STATUS = 'SET-USER-STATUS';
 
 type SetUserDataACType = {
     type: typeof SET_USER_PROFILE_DATA
     userProfile: UserProfileType
+}
+type SetUserStatusACType = {
+    type: typeof SET_USER_STATUS
+    status: string
 }
 
 export const setUserProfileData = (userProfile: UserProfileType): SetUserDataACType => {
@@ -14,47 +27,68 @@ export const setUserProfileData = (userProfile: UserProfileType): SetUserDataACT
         userProfile: userProfile,
     }
 };
+export const setUserStatus = (status: string): SetUserStatusACType => {
+    return {
+        type: SET_USER_STATUS,
+        status
+    }
+};
 
-type ActionsType = SetUserDataACType;
+type ActionsType = SetUserDataACType | SetUserStatusACType;
 
 export type DispatchTypeUsersReducer = (action: ActionsType) => void
 
-const initState = {
-    aboutMe: 'test',
-    userId: 0,
-    lookingForAJob: false,
-    lookingForAJobDescription: 'test',
-    fullName: 'test',
-    contacts: {
-        github: 'github',
-        vk: 'vk',
-        facebook: 'facebook',
-        instagram: 'instagram',
-        twitter: 'twitter',
-        website: 'website',
-        youtube: 'youtube',
-        mainLink: 'mainLink',
+const initState: UserProfileStateType = {
+    userData: {
+        aboutMe: 'test',
+        userId: 0,
+        lookingForAJob: false,
+        lookingForAJobDescription: 'test',
+        fullName: 'test',
+        contacts: {
+            github: 'github',
+            vk: 'vk',
+            facebook: 'facebook',
+            instagram: 'instagram',
+            twitter: 'twitter',
+            website: 'website',
+            youtube: 'youtube',
+            mainLink: 'mainLink',
+        },
+        photos: {
+            small: 'small',
+            large: 'large',
+        },
     },
-    photos: {
-        small: 'small',
-        large: 'large',
-    },
+    userStatus: {
+        status: "",
+    }
 };
 
-const userProfile = (state: UserProfileType = initState, action: ActionsType) => {
+const userProfile = (state: UserProfileStateType = initState, action: ActionsType) => {
 
     switch (action.type) {
         case SET_USER_PROFILE_DATA:
-            return {...action.userProfile};
+            return {...state, userData: action.userProfile};
+        case SET_USER_STATUS:
+            const stateCopy = {...state}
+            stateCopy.userStatus.status = action.status;
+            return stateCopy;
         default:
             return state;
     }
 };
 
 export const getProfileThunkCreator = (userId: string) => (dispatch: DispatchTypeUsersReducer) => {
-    usersAPI.getProfile(userId)
+    profileApi.getProfile(userId)
         .then(res => {
             dispatch(setUserProfileData(res.data));
+        })
+};
+export const getStatusThunkCreator = (userId: string) => (dispatch: DispatchTypeUsersReducer) => {
+    profileApi.getStatus(userId)
+        .then(res => {
+            dispatch(setUserStatus(res.data));
         })
 };
 
