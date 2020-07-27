@@ -29,6 +29,7 @@ class ProfileDataContainer extends Component<PropsType> {
         }
     }
 
+
     render() {
         return (
             <ProfileData status={this.props.status} userName={this.props.login} updateStatus={this.updateStatus}/>

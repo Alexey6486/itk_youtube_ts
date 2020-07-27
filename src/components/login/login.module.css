@@ -1,0 +1,14 @@
+.loginFormTitle{
+    margin-bottom: 15px;
+    color: #555555;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.loginForm{
+
+}
+
+.loginFormGroup{
+    margin-bottom: 10px;
+}

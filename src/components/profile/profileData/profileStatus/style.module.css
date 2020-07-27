@@ -13,7 +13,11 @@
     color: #444444;
     line-height: 1;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    padding: 4px 4px;
-    height: 23px;
-    border: 1px solid #777777;
+    padding: 0;
+    height: 16px;
+    border: none;
+    border-bottom: 1px solid #ef9939;
+}
+.inputStatus:focus{
+    outline: none;
 }

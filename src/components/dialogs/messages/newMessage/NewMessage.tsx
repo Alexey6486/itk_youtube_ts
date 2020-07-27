@@ -1,48 +1,69 @@
 import React, {ChangeEvent, useState} from "react";
 import styles from './style.module.css'
+import {InjectedFormProps, reduxForm, Field} from "redux-form";
 
 type PropsType = {
     textareaInput: string
-    addMessage: () => void
-    changeText: (text: string) => void
+    addMessageThunkCreator: (message: string) => void
 }
 
-function NewMessage(props: PropsType) {
+type FormDataType = {
+    message: string
+}
 
-    const {textareaInput, addMessage, changeText} = props;
-    const [err, setErr] = useState(false);
+export const NewMessage = (props: PropsType) => {
 
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.currentTarget) {
-            const arr = e.currentTarget.value;
-            changeText(arr);
-            setErr(false);
-        }
-    };
+    const {addMessageThunkCreator} = props;
+    // const [err, setErr] = useState(false);
 
-    const onSubmitHandler = (e: ChangeEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (textareaInput.trim()) {
-            addMessage();
-            setErr(false);
-        } else {
-            setErr(true);
-        }
-    };
+    // const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    //     if (e.currentTarget) {
+    //         const arr = e.currentTarget.value;
+    //         changeText(arr);
+    //         setErr(false);
+    //     }
+    // };
+
+    // const onSubmitHandler = (e: ChangeEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     if (textareaInput.trim()) {
+    //         addMessage();
+    //         setErr(false);
+    //     } else {
+    //         setErr(true);
+    //     }
+    // };
+
+    const onSubmit = (formData: FormDataType) => {
+        addMessageThunkCreator(formData.message);
+    }
 
     return (
         <div className={styles.newMessageBlock}>
-            <form className={err ? `${styles.newMessageForm} ${styles.err}` : `${styles.newMessageForm}`}
-                  onSubmit={onSubmitHandler}>
-
-                <textarea placeholder={err ? "Type your message please." : "Text your message here..."}
-                          value={textareaInput}
-                          onChange={onChangeHandler}/>
-
-                <button type="submit">I say, ...</button>
-            </form>
+            <MessageReduxForm onSubmit={onSubmit}/>
         </div>
     );
 }
 
-export default NewMessage;
+const MessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={'textarea'} name={"message"} placeholder={'Text your message here...'}/>
+            <button>I say, ...</button>
+        </form>
+    )
+};
+
+const MessageReduxForm = reduxForm<FormDataType>({
+    form: 'MessageForm'
+})(MessageForm);
+
+// <form className={err ? `${styles.newMessageForm} ${styles.err}` : `${styles.newMessageForm}`}
+//       onSubmit={onSubmitHandler}>
+//
+//                 <textarea placeholder={err ? "Type your message please." : "Text your message here..."}
+//                           value={textareaInput}
+//                           onChange={onChangeHandler}/>
+//
+//     <button type="submit">I say, ...</button>
+// </form>

@@ -7,6 +7,7 @@ const NEW_POST_TEXT = "NEW-TEXT";
 /* These action types we use in the dispatch action type (ActionsType) in store.tsx */
 export type AddPostACType = {
     type: typeof ADD_POST
+    post: string
 }
 export type NewTextPostACType = {
     type: typeof NEW_POST_TEXT,
@@ -18,9 +19,10 @@ type ActionsType = AddPostACType | NewTextPostACType;
 export type DispatchTypeProfileReducer = (action: ActionsType) => void
 
 /* Action creators are callbacks we use as a dispatch param on target page (AddPost.tsx) */
-export const addPostActionCreator = ():AddPostACType => {
+export const addPostActionCreator = (post: string):AddPostACType => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        post
     };
 };
 export const newTextPostActionCreator = (text: string):NewTextPostACType => {
@@ -44,9 +46,9 @@ const profileReducer = (state: ProfilePageType = initState, action: ActionsType)
 
     switch (action.type) {
         case ADD_POST:
-            let newEntry: PostsType = {message: state.textareaInput, likes: "2"};
+            let newEntry: PostsType = {message: action.post, likes: "2"};
             let newArray = [...state.posts, newEntry];
-            return {...state, posts: newArray, textareaInput: ""};
+            return {...state, posts: newArray};
         case NEW_POST_TEXT:
             return {...state, textareaInput: action.text};
         default:
@@ -55,3 +57,7 @@ const profileReducer = (state: ProfilePageType = initState, action: ActionsType)
 };
 
 export default profileReducer;
+
+export const addPostThunkCreator = (post: string) => (dispatch: DispatchTypeProfileReducer) => {
+    dispatch(addPostActionCreator(post))
+}

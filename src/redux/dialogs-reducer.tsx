@@ -5,6 +5,7 @@ const NEW_MSG_TEXT = "NEW-MSG-TEXT";
 
 export type AddMsgACType = {
     type: typeof ADD_MSG
+    message: string
 }
 export type NewTextMsgACType = {
     type: typeof NEW_MSG_TEXT,
@@ -15,9 +16,10 @@ type ActionsType = AddMsgACType | NewTextMsgACType;
 
 export type DispatchTypeDialogsReducer = (action: ActionsType) => void
 
-export const addMsgActionCreator = ():AddMsgACType => {
+export const addMsgActionCreator = (message: string):AddMsgACType => {
     return {
-        type: ADD_MSG
+        type: ADD_MSG,
+        message,
     };
 };
 export const newTextMsgActionCreator = (text: string):NewTextMsgACType => {
@@ -47,9 +49,9 @@ const dialogsReducer = (state: MessagesPageType = initState, action: ActionsType
 
     switch (action.type) {
         case ADD_MSG:
-            let newEntry = {id: 13, author: 'test', message: state.textareaInput};
+            let newEntry = {id: 13, author: 'test', message: action.message};
             let newArray = [...state.messagesInChatRoom, newEntry];
-            return {...state, messagesInChatRoom: newArray, textareaInput: ""};
+            return {...state, messagesInChatRoom: newArray};
         case NEW_MSG_TEXT:
             return {...state, textareaInput: action.text};
         default:
@@ -58,3 +60,7 @@ const dialogsReducer = (state: MessagesPageType = initState, action: ActionsType
 };
 
 export default dialogsReducer;
+
+export const addMessageThunkCreator = (message: string) => (dispatch: DispatchTypeDialogsReducer) => {
+    dispatch(addMsgActionCreator(message));
+}

@@ -13,6 +13,14 @@ export class ProfileStatus extends Component<PropsType> {
         status: this.props.status,
     };
 
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            });
+        }
+    }
+
     onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget) {
             this.setState({
