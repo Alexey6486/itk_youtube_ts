@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useState} from "react";
 import styles from './style.module.css'
 import {InjectedFormProps, reduxForm, Field} from "redux-form";
+import { Textarea } from "../../../common/formsControl/FormsControl";
+import {maxLengthCreator, requiredField} from "../../../../utils/validators/validators";
 
 type PropsType = {
     textareaInput: string
@@ -45,10 +47,12 @@ export const NewMessage = (props: PropsType) => {
     );
 }
 
+const maxLength = maxLengthCreator(150);
+
 const MessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={"message"} placeholder={'Text your message here...'}/>
+            <Field component={Textarea} name={"message"} placeholder={'Text your message here...'} validate={[requiredField, maxLength]}/>
             <button>I say, ...</button>
         </form>
     )

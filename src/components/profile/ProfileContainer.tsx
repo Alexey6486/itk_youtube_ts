@@ -19,11 +19,9 @@ class ProfileContainer extends Component<PropsType> {
         this.props.authThunkCreator();
     }
 
-    authCheck = this.props.isAuth ? <Profile /> : <p>denied</p>;
-
     render() {
         return (
-            this.authCheck
+            <Profile />
         );
     }
 }
@@ -31,9 +29,9 @@ class ProfileContainer extends Component<PropsType> {
 const mapStateToProps = (state: StateType) => {
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.login,
-        email: state.auth.email,
-        id: state.auth.id,
+        login: state.auth.payload.login,
+        email: state.auth.payload.email,
+        id: state.auth.payload.id,
     }
 }
 

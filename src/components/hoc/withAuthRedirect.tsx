@@ -1,12 +1,12 @@
 import {useSelector} from "react-redux";
 import {AppRootState} from "../../redux/redux-store";
-import {AuthUserData} from "../../redux/auth-reducer";
+import {AuthState} from "../../redux/auth-reducer";
 import {Redirect} from "react-router";
 import React from "react";
 
 export const AuthRedirectComponent = (Component: React.ComponentType<any>, props: any = null) => {
 
-    const isAuthState = useSelector<AppRootState, AuthUserData>(state => state.auth);
+    const isAuthState = useSelector<AppRootState, AuthState>(state => state.auth);
     const {isAuth} = isAuthState;
 
     if (!isAuth) {

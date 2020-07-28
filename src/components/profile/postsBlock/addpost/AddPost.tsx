@@ -1,19 +1,17 @@
-import React, {ChangeEvent, useState} from 'react';
+import React from 'react';
 import styles from './style.module.css'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {addPostThunkCreator} from "../../../../redux/profile-reducer";
+import {maxLengthCreator, requiredField} from "../../../../utils/validators/validators";
+import { Textarea } from '../../../common/formsControl/FormsControl';
 
 type PropsType = {
-    textareaInput: string
-    changeText: (text: string) => void
-
     addPostThunkCreator: (post: string) => void
 }
 
 function AddPost(props: PropsType) {
 
-    const {textareaInput, addPostThunkCreator, changeText} = props;
-    const [err, setErr] = useState(false);
+    const {addPostThunkCreator} = props;
+    //const [err, setErr] = useState(false);
 
     // const addTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     //     if (e.currentTarget) {
@@ -41,7 +39,7 @@ function AddPost(props: PropsType) {
             <div className={styles.postsTitle}>
                 <h3>ADD POST:</h3>
             </div>
-            <div className={err ? `${styles.addPostBlock} ${styles.err}` : `${styles.addPostBlock}`}>
+            <div className={styles.addPostBlock}>
                 <PostReduxForm onSubmit={onSubmit}/>
             </div>
         </>
@@ -53,11 +51,13 @@ export default AddPost;
 type FormDataType = {
     post: string
 }
+const maxLength = maxLengthCreator(300);
 
 const PostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={'post'} placeholder={'Text your post...'}/>
+            <Field component={Textarea} name={'post'} placeholder={'Text your post...'}
+                   validate={[requiredField, maxLength]}/>
             <button>I say...</button>
         </form>
     );

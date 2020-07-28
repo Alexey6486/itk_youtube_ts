@@ -40,8 +40,8 @@ class ProfileDataContainer extends Component<PropsType> {
 const mapStateToProps = (state: StateType) => {
     return {
         status: state.accountReducer.myStatus.status,
-        myId: state.auth.id,
-        login: state.auth.login,
+        myId: state.auth.payload.id,
+        login: state.auth.payload.login,
     }
 }
 

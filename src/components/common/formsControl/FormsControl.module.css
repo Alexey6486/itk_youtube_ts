@@ -1,0 +1,19 @@
+
+.formGroup{
+    display: flex;
+    flex-direction: column;
+}
+.formGroup.error input,
+.formGroup.error textarea{
+    border: 1px solid tomato;
+}
+.formGroup span,
+.formGroup span{
+    display: none;
+    color: tomato;
+    margin-bottom: 10px;
+}
+.formGroup.error span,
+.formGroup.error span{
+    display: block;
+}

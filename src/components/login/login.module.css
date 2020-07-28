@@ -12,3 +12,6 @@
 .loginFormGroup{
     margin-bottom: 10px;
 }
+.err{
+    color: tomato;
+}

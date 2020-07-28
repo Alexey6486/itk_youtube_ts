@@ -56,5 +56,26 @@ export const authApi = {
                     withCredentials: true
                 })
                 .then(res => res);
-    }
+    },
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance
+            .post(`auth/login`, {
+                email,
+                password,
+                rememberMe,
+            })
+            .then(res => {
+                debugger
+                return res.data;
+            })
+
+    },
+    logout() {
+        return instance
+            .delete(`auth/login`)
+            .then(res => {
+                return res.data;
+            })
+
+    },
 };

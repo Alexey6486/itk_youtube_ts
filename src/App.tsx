@@ -10,7 +10,7 @@ import UsersContainer from "./components/users/UsersContainer";
 import NewsContainer from "./components/news/NewsContainer";
 import UserProfileContainer from "./components/userProfile/UserProfileContainer";
 import HeaderContainer from './components/header/headerContainer';
-import {Login} from "./components/login/Login";
+import Login from "./components/login/Login";
 
 
 export const App = () => {

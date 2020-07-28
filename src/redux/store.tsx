@@ -1,5 +1,5 @@
 import {NewsStateType} from "./news-reducer";
-import {AuthUserData} from "./auth-reducer";
+import {AuthState} from "./auth-reducer";
 import { UserProfileStateType } from "./userProfile-reducer";
 import {AccountStateType} from "./account-reducer";
 
@@ -89,7 +89,7 @@ export type StateType = {
     usersPage: UsersPageType
     newsPage: Array<NewsStateType>
     userProfilePage: UserProfileStateType
-    auth: AuthUserData
+    auth: AuthState
     accountReducer: AccountStateType
 }
 

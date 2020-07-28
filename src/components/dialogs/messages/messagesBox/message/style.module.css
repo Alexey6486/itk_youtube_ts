@@ -19,6 +19,10 @@
     font-size: 14px;
     color: #333333;
     line-height: 1.2;
+    word-break: break-word;
+}
+.message__content{
+
 }
 .message__author{
     padding: 10px 10px 0 10px;

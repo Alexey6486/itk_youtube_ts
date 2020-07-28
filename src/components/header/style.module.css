@@ -19,10 +19,18 @@
 .headerContent__loginBlock{
 
 }
+.headerContent__loginBlock p{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .headerContent__loginBlock a{
     color: #333333;
     transition: color linear 150ms;
+    text-decoration: underline;
 }
+.headerContent__loginBlock p:hover,
 .headerContent__loginBlock a:hover{
     color: #ffa405;
+    text-decoration: none;
 }
