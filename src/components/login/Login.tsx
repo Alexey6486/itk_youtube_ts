@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropsWithChildren} from "react";
 import s from './login.module.css'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/formsControl/FormsControl";
@@ -14,7 +14,7 @@ type FormDataType = {
     rememberMe: boolean
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props: PropsWithChildren<InjectedFormProps<FormDataType>>) => {
 
     return (
         <form className={s.loginForm} onSubmit={props.handleSubmit}>

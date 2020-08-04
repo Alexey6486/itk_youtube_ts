@@ -3,7 +3,6 @@ import {Profile} from "./Profile";
 import {StateType} from "../../redux/store";
 import { connect } from "react-redux";
 import {authThunkCreator} from "../../redux/auth-reducer";
-import {NavLink} from "react-router-dom";
 
 type PropsType = {
     id: number | null

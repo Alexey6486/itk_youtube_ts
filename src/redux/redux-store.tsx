@@ -8,6 +8,7 @@ import {authReducer} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk';
 import {accountReducer} from "./account-reducer";
 import {reducer as formReducer} from 'redux-form';
+import {initReducer} from "./initReducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -18,6 +19,7 @@ const reducers = combineReducers({
     auth: authReducer,
     accountReducer,
     form: formReducer,
+    initApp: initReducer,
 });
 
 export type AppRootState = ReturnType<typeof reducers>;

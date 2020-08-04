@@ -38,7 +38,7 @@ type StopSubmitACType = {
 type ActionType = SetUserDataACType;
 export type DispatchTypeAuthReducer = (action: ActionType ) => void
 
-type ThunkType = ThunkAction<void, AppRootState, {}, ActionType>;
+
 
 const initState: AuthState = {
     payload: {
@@ -67,6 +67,7 @@ export const authThunkCreator = () => (dispatch: DispatchTypeAuthReducer) => {
         });
 };
 
+type ThunkType = ThunkAction<void, AppRootState, {}, ActionType>;
 export const loginThunkCreator = (email: string, password: string, rememberMe: boolean):ThunkType => (dispatch: ThunkDispatch<AppRootState, {}, ActionType>) => {
     authApi.login(email, password, rememberMe)
         .then(res => {

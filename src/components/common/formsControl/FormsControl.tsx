@@ -14,11 +14,11 @@ import s from './FormsControl.module.css';
 
 
 const Element = (Element: any) => ({ input, meta, ...props }: any) => {
-    const hasError = meta.touched && meta.error;
+    const err = meta.touched && meta.error;
     return (
-        <div className={ s.formGroup + " " + (hasError ? s.error : "") }>
+        <div className={ s.formGroup + " " + (err ? s.error : "") }>
             <Element {...input} {...props} />
-            { hasError && <span> { meta.error } </span> }
+            { err && <span> { meta.error } </span> }
         </div>
     );
 };

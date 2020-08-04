@@ -1,7 +1,8 @@
 import {NewsStateType} from "./news-reducer";
 import {AuthState} from "./auth-reducer";
-import { UserProfileStateType } from "./userProfile-reducer";
+import {UserProfileStateType} from "./userProfile-reducer";
 import {AccountStateType} from "./account-reducer";
+import {InitStateType} from "./initReducer";
 
 export type PostsType = {
     message: string
@@ -17,9 +18,7 @@ export type UsersInChatRoomType = {
     userName: string
     dialogUrl: string
 }
-export type AsideBlockType = {
-
-}
+export type AsideBlockType = {}
 
 export type UserProfileContactsType = {
     github: string | null
@@ -91,6 +90,7 @@ export type StateType = {
     userProfilePage: UserProfileStateType
     auth: AuthState
     accountReducer: AccountStateType
+    initApp: InitStateType
 }
 
 //export type DispatchType = (action: ActionsType) => void

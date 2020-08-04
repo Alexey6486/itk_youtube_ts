@@ -2,8 +2,19 @@ import React from "react";
 import styles from './style.module.css'
 import Messages from "./messages/Messages";
 import UsersListContainer from "./usersList/UserListContainer";
+import {useSelector} from "react-redux";
+import {AppRootState} from "../../redux/redux-store";
+import {AuthState} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
 
-function Dialogs() {
+export const Dialogs = () => {
+
+    const authState = useSelector<AppRootState, AuthState>(state => state.auth)
+    const {isAuth} = authState;
+
+    if (!isAuth) {
+        return <Redirect to={`/login`}/>
+    }
 
     return (
         <div className={styles.dialogsBlock}>
@@ -17,5 +28,3 @@ function Dialogs() {
         </div>
     );
 }
-
-export default Dialogs;
