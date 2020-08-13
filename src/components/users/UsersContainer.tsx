@@ -11,6 +11,14 @@ import {Pagination} from "../common/pagination/Pagination";
 import {Users} from "./Users";
 import { LoadingIcon } from "../common/loadingIcon/LoadingIcon";
 import {Redirect} from "react-router";
+import {
+    getCurrentPage,
+    getDisabledIdArr, getIsAuth,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers, getUsersSuperSelector
+} from "../../redux/users-selectors";
 
 type PropsType = {
     users: Array<ApiUsersType>
@@ -104,17 +112,17 @@ class UsersContainer extends React.Component<PropsType> {
 
 }
 
-const mapToStateProps = (state: StateType) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        disabledIdArr: state.usersPage.disabledIdArr,
-        isAuth: state.auth.isAuth
-    }
-};
+// const mapToStateProps = (state: StateType) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         disabledIdArr: state.usersPage.disabledIdArr,
+//         isAuth: state.auth.isAuth
+//     }
+// };
 
 // const mapDispatchToProps = (dispatch: DispatchTypeUsersReducer) => {
 //     return {
@@ -126,6 +134,19 @@ const mapToStateProps = (state: StateType) => {
 //         setLoading: (isFetching: boolean) => {dispatch(setLoadingActionCreator(isFetching))},
 //     }
 // };
+
+const mapToStateProps = (state: StateType) => {
+    return {
+        //users: getUsers(state),
+        users: getUsersSuperSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        disabledIdArr: getDisabledIdArr(state),
+        isAuth: getIsAuth(state)
+    }
+};
 
 export default connect(mapToStateProps, {unfollowUserThunkCreator,
                                          followUserThunkCreator,
