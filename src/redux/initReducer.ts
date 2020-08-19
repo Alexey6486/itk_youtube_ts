@@ -1,4 +1,4 @@
-import {authThunkCreator} from "./auth-reducer";
+import {authThunkCreator} from "../components/login/auth-reducer";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import {AppRootState} from "./redux-store";
 

@@ -3,7 +3,7 @@ import {ProfileData} from "./ProfileData";
 import {connect} from "react-redux";
 import {Component} from "react";
 import React from "react";
-import {getMyStatusThunkCreator, updateStatusThunkCreator} from "../../../redux/account-reducer";
+import {getMyStatusThunkCreator, updateStatusThunkCreator} from "../account-reducer";
 
 type StatePropsType = {
     status: string

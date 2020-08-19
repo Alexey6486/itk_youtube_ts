@@ -1,7 +1,7 @@
-import {NewsStateType} from "./news-reducer";
-import {AuthState} from "./auth-reducer";
+import {NewsStateType} from "../components/news/news-reducer";
+import {AuthState} from "../components/login/auth-reducer";
 import {UserProfileStateType} from "./userProfile-reducer";
-import {AccountStateType} from "./account-reducer";
+import {AccountStateType} from "../components/profile/account-reducer";
 import {InitStateType} from "./initReducer";
 
 export type PostsType = {
@@ -35,6 +35,10 @@ export type PhotoType = {
     small: string | null
     large: string | null
 }
+export type PhotoOnChangeType = {
+    small?: string | null
+    large?: string | null
+}
 export type UsersType = {
     id: number
     name: string
@@ -58,6 +62,13 @@ export type ApiUsersType = {
     photos: PhotoType
     status: string | null
     followed: boolean
+}
+export type ApiUsersOnChangeType = {
+    id?: number
+    name?: string
+    photos?: PhotoOnChangeType
+    status?: string | null
+    followed?: boolean
 }
 export type LocationType = {
     country: string

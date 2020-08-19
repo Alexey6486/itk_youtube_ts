@@ -2,7 +2,7 @@ import {Component} from "react";
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {authThunkCreator, logoutThunkCreator} from "../../redux/auth-reducer";
+import {authThunkCreator, logoutThunkCreator} from "../login/auth-reducer";
 import {StateType} from "../../redux/store";
 
 type PropsType = {

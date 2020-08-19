@@ -1,4 +1,4 @@
-import {accountApi, profileApi} from "../api/api";
+import {accountApi, profileApi} from "../../api/api";
 
 export type AccountStateType = {
     myStatus: {
@@ -55,15 +55,11 @@ export const accountReducer = (state: AccountStateType = initState, action: Acti
     }
 }
 
-export const updateStatusThunkCreator = (status: string) => (dispatch: DispatchType) => {
-    accountApi.updateStatus(status)
-        .then(res => {
-            return dispatch(updateStatus(status));
-        })
-}
-export const getMyStatusThunkCreator = (userId: string) => (dispatch: DispatchType) => {
-    profileApi.getStatus(userId)
-        .then(res => {
-            dispatch(getMyStatus(res.data));
-        })
+export const updateStatusThunkCreator = (status: string) => async (dispatch: DispatchType) => {
+    const res = await accountApi.updateStatus(status);
+    dispatch(updateStatus(status));
+};
+export const getMyStatusThunkCreator = (userId: string) => async (dispatch: DispatchType) => {
+    const res = await profileApi.getStatus(userId);
+    dispatch(getMyStatus(res.data));
 };

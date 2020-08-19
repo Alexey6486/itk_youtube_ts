@@ -4,7 +4,7 @@ import {Messages} from "./messages/Messages";
 import {UsersListContainer} from "./usersList/UserListContainer";
 import {useSelector} from "react-redux";
 import {AppRootState} from "../../redux/redux-store";
-import {AuthState} from "../../redux/auth-reducer";
+import {AuthState} from "../login/auth-reducer";
 import {Redirect} from "react-router-dom";
 
 export const Dialogs = React.memo(() => {

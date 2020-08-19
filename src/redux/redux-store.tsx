@@ -2,11 +2,11 @@ import {combineReducers, createStore, applyMiddleware} from "redux";
 import {profileReducer} from "../components/profile/profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import {usersReducer} from "../components/users/users-reducer";
-import newsReducer from "./news-reducer";
+import newsReducer from "../components/news/news-reducer";
 import userProfile from "./userProfile-reducer";
-import {authReducer} from "./auth-reducer";
+import {authReducer} from "../components/login/auth-reducer";
 import thunkMiddleware from 'redux-thunk';
-import {accountReducer} from "./account-reducer";
+import {accountReducer} from "../components/profile/account-reducer";
 import {reducer as formReducer} from 'redux-form';
 import {initReducer} from "./initReducer";
 

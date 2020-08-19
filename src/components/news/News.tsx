@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './News.module.css';
-import {NewsStateType} from "../../redux/news-reducer";
+import {NewsStateType} from "./news-reducer";
 
 type PropsType = {
     state: Array<NewsStateType>

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Profile} from "./Profile";
 import {StateType} from "../../redux/store";
 import { connect } from "react-redux";
-import {authThunkCreator} from "../../redux/auth-reducer";
+import {authThunkCreator} from "../login/auth-reducer";
 
 type PropsType = {
     id: number | null

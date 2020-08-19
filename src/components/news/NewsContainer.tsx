@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {News} from "./News";
-import {DispatchTypeNewsReducer, addNewsAC} from "../../redux/news-reducer";
+import {DispatchTypeNewsReducer, addNewsAC} from "./news-reducer";
 import { StateType } from "../../redux/store";
 
 const mapStateToProps = (state: StateType) => {

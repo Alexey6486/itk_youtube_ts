@@ -6,7 +6,7 @@ import PostsContainer from "./postsBlock/posts/PostsContainer";
 import {Redirect} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {AppRootState} from "../../redux/redux-store";
-import {AuthState} from "../../redux/auth-reducer";
+import {AuthState} from "../login/auth-reducer";
 //import {AuthRedirectComponent} from "../hoc/withAuthRedirect";
 
 export const Profile = () => {

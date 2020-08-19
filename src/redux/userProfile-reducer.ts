@@ -79,17 +79,13 @@ const userProfile = (state: UserProfileStateType = initState, action: ActionsTyp
     }
 };
 
-export const getProfileThunkCreator = (userId: string) => (dispatch: DispatchTypeUsersReducer) => {
-    profileApi.getProfile(userId)
-        .then(res => {
-            dispatch(setUserProfileData(res.data));
-        })
+export const getProfileThunkCreator = (userId: string) => async (dispatch: DispatchTypeUsersReducer) => {
+    const res = await profileApi.getProfile(userId);
+    dispatch(setUserProfileData(res.data));
 };
-export const getStatusThunkCreator = (userId: string) => (dispatch: DispatchTypeUsersReducer) => {
-    profileApi.getStatus(userId)
-        .then(res => {
-            dispatch(setUserStatus(res.data));
-        })
+export const getStatusThunkCreator = (userId: string) => async (dispatch: DispatchTypeUsersReducer) => {
+    const res = await profileApi.getStatus(userId);
+    dispatch(setUserStatus(res.data));
 };
 
 export default userProfile;
