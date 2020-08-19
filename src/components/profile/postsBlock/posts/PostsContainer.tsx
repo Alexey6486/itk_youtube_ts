@@ -1,8 +1,7 @@
 import {StateType} from '../../../../redux/store';
 import Posts from "./Posts";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 //import {AuthRedirectComponent} from "../../../hoc/withAuthRedirect";
-import { compose } from 'redux';
 
 const mapStateToProps = (state: StateType) => {
     return {

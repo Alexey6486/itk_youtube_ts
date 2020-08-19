@@ -1,14 +1,14 @@
 import React from "react";
 import styles from './style.module.css'
-import Messages from "./messages/Messages";
-import UsersListContainer from "./usersList/UserListContainer";
+import {Messages} from "./messages/Messages";
+import {UsersListContainer} from "./usersList/UserListContainer";
 import {useSelector} from "react-redux";
 import {AppRootState} from "../../redux/redux-store";
 import {AuthState} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 
-export const Dialogs = () => {
-
+export const Dialogs = React.memo(() => {
+    console.log('render dialogs')
     const authState = useSelector<AppRootState, AuthState>(state => state.auth)
     const {isAuth} = authState;
 
@@ -27,4 +27,4 @@ export const Dialogs = () => {
             </div>
         </div>
     );
-}
+});

@@ -1,9 +1,5 @@
 import {StateType} from "../../../../redux/store";
-import {
-    newTextPostActionCreator,
-    addPostActionCreator,
-    DispatchTypeProfileReducer, addPostThunkCreator
-} from '../../../../redux/profile-reducer';
+import {addPostThunkCreator} from '../../../../redux/profile-reducer';
 import AddPost from "./AddPost";
 import {connect} from "react-redux";
 

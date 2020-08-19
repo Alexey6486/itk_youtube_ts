@@ -24,7 +24,6 @@ class ProfileDataContainer extends Component<PropsType> {
 
     componentDidMount(): void {
         if (this.props.myId !== null) {
-            debugger
             this.props.getMyStatusThunkCreator(this.props.myId.toString())
         }
     }

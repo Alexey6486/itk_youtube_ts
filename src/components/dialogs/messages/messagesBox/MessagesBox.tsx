@@ -1,15 +1,15 @@
 import React from "react";
 import styles from './style.module.css'
-import Message from "./message/Message";
+import {Message} from "./message/Message";
 import { MessageType } from "../../../../redux/store";
 
 type PropsType = {
     messages: Array<MessageType>
 }
 
-function MessagesBox(props: PropsType) {
-
-    const {messages} =props;
+export const MessagesBox = React.memo((props: PropsType) => {
+    console.log('render msgbox')
+    const {messages} = props;
 
     const messagesInChatRoomMap = messages.map((message) => {
         return <Message key={message.id} author={message.author} message={message.message} />
@@ -20,6 +20,4 @@ function MessagesBox(props: PropsType) {
             {messagesInChatRoomMap}
         </div>
     );
-}
-
-export default MessagesBox;
+});

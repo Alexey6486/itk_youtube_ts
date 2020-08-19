@@ -2,7 +2,7 @@ import React from "react";
 import s from "./style.module.css";
 import userPhoto from "../../assets/images/post/user.png";
 import {ApiUsersType} from "../../redux/store";
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 type PropsType = {
     users: Array<ApiUsersType>
@@ -23,7 +23,12 @@ export const Users = (props: PropsType) => {
         const followBtn = user.followed ? 'unfollow' : 'follow';
 
         const onclickHandler = () => {
-            !user.followed ? followUserApi(user.id) : unfollowUserApi(user.id)
+            if (isAuth) {
+                !user.followed ? followUserApi(user.id) : unfollowUserApi(user.id)
+            } else {
+                alert('Please Log In.')
+            }
+
         };
 
         return (

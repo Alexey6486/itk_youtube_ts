@@ -1,5 +1,4 @@
 import {accountApi, profileApi} from "../api/api";
-import {DispatchTypeUsersReducer, setUserStatus} from "./userProfile-reducer";
 
 export type AccountStateType = {
     myStatus: {
@@ -48,10 +47,8 @@ export const accountReducer = (state: AccountStateType = initState, action: Acti
             stateUpdateStatusCopy.myStatus.status = action.status;
             return stateUpdateStatusCopy;
         case GET_MY_STATUS:
-            debugger
             const stateGetStatusCopy = {...state}
             stateGetStatusCopy.myStatus.status = action.status;
-            
             return {...stateGetStatusCopy};
         default:
             return state;
@@ -67,7 +64,6 @@ export const updateStatusThunkCreator = (status: string) => (dispatch: DispatchT
 export const getMyStatusThunkCreator = (userId: string) => (dispatch: DispatchType) => {
     profileApi.getStatus(userId)
         .then(res => {
-            debugger
             dispatch(getMyStatus(res.data));
         })
 };

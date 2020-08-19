@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./style.module.css"
-import UserBlock from "./userBlock/UserBlock";
+import {UserBlock} from "./userBlock/UserBlock";
 import { UsersInChatRoomType } from "../../../redux/store";
 
 type PropsType = {
     usersInChatRoom: Array<UsersInChatRoomType>
 }
 
-function UsersList(props: PropsType) {
+export const UsersList = React.memo((props: PropsType) => {
 
     const {usersInChatRoom} = props;
 
@@ -20,6 +20,4 @@ function UsersList(props: PropsType) {
             {usersInChatRoomMap}
         </div>
     );
-}
-
-export default UsersList;
+});

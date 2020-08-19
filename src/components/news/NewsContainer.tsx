@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import News from "./News";
+import {News} from "./News";
 import {DispatchTypeNewsReducer, addNewsAC} from "../../redux/news-reducer";
 import { StateType } from "../../redux/store";
 

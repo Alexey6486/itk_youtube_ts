@@ -6,7 +6,7 @@ type PropsType = {
     message: string
 }
 
-function Message(props: PropsType) {
+export const Message = React.memo((props: PropsType) => {
     return (
         <div className={styles.message}>
             <div className={styles.message__avatar}>
@@ -24,6 +24,4 @@ function Message(props: PropsType) {
             </div>
         </div>
     );
-}
-
-export default Message;
+})

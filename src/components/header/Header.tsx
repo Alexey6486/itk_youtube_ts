@@ -10,9 +10,9 @@ type PropsType = {
     onLogoutClickHandler: () => void
 }
 
-export const Header = (props: PropsType) => {
+export const Header = React.memo((props: PropsType) => {
 
-    const {isAuth, login, email, id, onLogoutClickHandler} = props;
+    const {isAuth, onLogoutClickHandler} = props;
 
     return (
         <>
@@ -28,4 +28,4 @@ export const Header = (props: PropsType) => {
             </header>
         </>
     );
-};
+});

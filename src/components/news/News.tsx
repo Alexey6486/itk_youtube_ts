@@ -7,7 +7,7 @@ type PropsType = {
     addNews: (url: string) => void
 }
 
-function News(props: PropsType) {
+export const News = React.memo((props: PropsType) => {
 
     const {state, addNews} = props;
 
@@ -28,7 +28,7 @@ function News(props: PropsType) {
     const mapState = state.map(item => {
         return (
             <div className={s.newsItem}>
-                <div>Url: <a href={item.url} target="_blank">{item.url}</a></div>
+                <div>Url: <a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></div>
                 <div>Follow: {item.follow ? 'yes' : 'no'}</div>
             </div>
         );
@@ -45,6 +45,4 @@ function News(props: PropsType) {
             {mapState}
         </div>
     );
-}
-
-export default News;
+})

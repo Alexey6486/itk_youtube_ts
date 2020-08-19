@@ -44,11 +44,47 @@ export const Pagination = (props: PropsType) => {
                             return <button key={page} className={page === currentPage ? s.currentPage : ""} onClick={() => onPageChange(page)}>{page}</button>
                         });
 
+    const portionWithLastPage = (page: number) => {
+        onPageChange(page);
+        setPortionCount(portionsTotal);
+    };
+    const portionWithFirstPage = (page: number) => {
+        onPageChange(page);
+        setPortionCount(1);
+    };
+
+    const lastPage = pages.map(page => {
+        if (page === pages.length - 1) {
+            return (
+                <div key={page}>
+                    <div className={s.paginationDots}>...</div>
+                    <button onClick={() => portionWithLastPage(page)}
+                         className={page === currentPage ? s.currentPage : ""}>{page}</button>
+                </div>
+            )
+        }
+        return null;
+    });
+    const firstPage = pages.map(page => {
+        if (page === 1) {
+            return (
+                <div key={page}>
+                    <button onClick={() => portionWithFirstPage(page)}
+                         className={page === currentPage ? s.currentPage : ""}>{page}</button>
+                    <div className={s.paginationDots}>...</div>
+                </div>
+            )
+        }
+        return null;
+    });
+
     return(
         <div className={s.paginationWrap}>
-            {portionCount > 1 && <button className={s.paginationArrowBtn} onClick={onPrevPortionPageBtnClick}>P</button>}
+            {portionCount > 1 && <button className={s.paginationArrowBtn} onClick={onPrevPortionPageBtnClick}>PREV</button>}
+            {portionCount > 1 && firstPage}
             {pagesMap}
-            {portionCount < portionsTotal && <button className={s.paginationArrowBtn} onClick={onNextPortionPageBtnClick}>N</button>}
+            {portionCount < portionsTotal && lastPage}
+            {portionCount < portionsTotal && <button className={s.paginationArrowBtn} onClick={onNextPortionPageBtnClick}>NEXT</button>}
         </div>
     );
 };

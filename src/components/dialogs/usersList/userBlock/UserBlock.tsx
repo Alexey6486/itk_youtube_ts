@@ -7,13 +7,11 @@ type PropsType = {
     userName: string
 }
 
-function UserBlock(props: PropsType) {
+export const UserBlock = React.memo((props: PropsType) => {
 
     return (
         <div className={styles.userBlock}>
             <NavLink to={props.dialogUrl} activeClassName={styles.active}>{props.userName}</NavLink>
         </div>
     );
-}
-
-export default UserBlock;
+});

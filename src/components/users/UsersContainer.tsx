@@ -1,23 +1,23 @@
 import {connect} from "react-redux";
-import {StateType, ApiUsersType} from "../../redux/store";
+import {ApiUsersType, StateType} from "../../redux/store";
 import {
-    getUsersThunkCreator,
+    followUserThunkCreator,
     getUsersOnPageChangeThunkCreator,
-    unfollowUserThunkCreator,
-    followUserThunkCreator
+    getUsersThunkCreator,
+    unfollowUserThunkCreator
 } from "../../redux/users-reducer";
 import React from "react";
 import {Pagination} from "../common/pagination/Pagination";
 import {Users} from "./Users";
-import { LoadingIcon } from "../common/loadingIcon/LoadingIcon";
-import {Redirect} from "react-router";
+import {LoadingIcon} from "../common/loadingIcon/LoadingIcon";
 import {
     getCurrentPage,
-    getDisabledIdArr, getIsAuth,
+    getDisabledIdArr,
+    getIsAuth,
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsers, getUsersSuperSelector
+    getUsersSuperSelector
 } from "../../redux/users-selectors";
 
 type PropsType = {
@@ -98,12 +98,13 @@ class UsersContainer extends React.Component<PropsType> {
 
                 {
                     this.props.isFetching
-                        ? <LoadingIcon />
+                        ? <LoadingIcon/>
                         : <Users followUserApi={this.followUserApi}
                                  unfollowUserApi={this.unfollowUserApi}
                                  users={this.props.users}
                                  disabledIdArr={this.props.disabledIdArr}
-                                 isAuth={this.props.isAuth}/>
+                                 isAuth={this.props.isAuth}
+                        />
                 }
 
             </>
@@ -148,7 +149,9 @@ const mapToStateProps = (state: StateType) => {
     }
 };
 
-export default connect(mapToStateProps, {unfollowUserThunkCreator,
-                                         followUserThunkCreator,
-                                         getUsersThunkCreator,
-                                         getUsersOnPageChangeThunkCreator})(UsersContainer);
+export default connect(mapToStateProps, {
+    unfollowUserThunkCreator,
+    followUserThunkCreator,
+    getUsersThunkCreator,
+    getUsersOnPageChangeThunkCreator
+})(UsersContainer);

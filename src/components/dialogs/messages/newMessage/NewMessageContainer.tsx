@@ -1,11 +1,7 @@
 import {StateType} from "../../../../redux/store";
-import {
-    newTextMsgActionCreator,
-    addMsgActionCreator,
-    DispatchTypeDialogsReducer, addMessageThunkCreator
-} from "../../../../redux/dialogs-reducer";
+import {addMessageThunkCreator} from "../../../../redux/dialogs-reducer";
 import {NewMessage} from "./NewMessage";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 const mapStateToProps = (state: StateType) => {
     return {

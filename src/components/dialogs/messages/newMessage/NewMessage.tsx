@@ -1,7 +1,7 @@
-import React, {ChangeEvent, useState} from "react";
+import React from "react";
 import styles from './style.module.css'
-import {InjectedFormProps, reduxForm, Field} from "redux-form";
-import { Textarea } from "../../../common/formsControl/FormsControl";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Textarea} from "../../../common/formsControl/FormsControl";
 import {maxLengthCreator, requiredField} from "../../../../utils/validators/validators";
 
 type PropsType = {
@@ -13,7 +13,7 @@ type FormDataType = {
     message: string
 }
 
-export const NewMessage = (props: PropsType) => {
+export const NewMessage = React.memo((props: PropsType) => {
 
     const {addMessageThunkCreator} = props;
     // const [err, setErr] = useState(false);
@@ -45,14 +45,15 @@ export const NewMessage = (props: PropsType) => {
             <MessageReduxForm onSubmit={onSubmit}/>
         </div>
     );
-}
+})
 
 const maxLength = maxLengthCreator(150);
 
 const MessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={Textarea} name={"message"} placeholder={'Text your message here...'} validate={[requiredField, maxLength]}/>
+            <Field component={Textarea} name={"message"} placeholder={'Text your message here...'}
+                   validate={[requiredField, maxLength]}/>
             <button>I say, ...</button>
         </form>
     )

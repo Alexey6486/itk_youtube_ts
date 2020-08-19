@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './UserProfile.module.css'
 import {LoadingIcon} from "../common/loadingIcon/LoadingIcon";
 
 type PropsType = {
