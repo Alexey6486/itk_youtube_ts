@@ -1,5 +1,5 @@
-import {UsersPageType, ApiUsersType} from "./store";
-import {usersApi} from "../api/api";
+import {UsersPageType, ApiUsersType} from "../../redux/store";
+import {usersApi} from "../../api/api";
 
 const FOLLOW_USER = "FOLLOW-USER";
 const UNFOLLOW_USER = "UNFOLLOW-USER";
@@ -102,7 +102,7 @@ const initState = {
     disabledIdArr: [],
 };
 
-const usersReducer = (state: UsersPageType = initState, action: ActionsType) => {
+export const usersReducer = (state: UsersPageType = initState, action: ActionsType) => {
 
     switch(action.type) {
 
@@ -196,8 +196,6 @@ export const unfollowUserThunkCreator = (userId: number) => (dispatch: DispatchT
             dispatch(followingInProgress(false, userId));
         });
 };
-
-export default usersReducer;
 
 // case UNFOLLOW_USER:
 //     const unfollowArr = [...state.users];

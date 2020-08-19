@@ -1,19 +1,19 @@
 import {StateType} from "../../../../redux/store";
-import {addPostThunkCreator} from '../../../../redux/profile-reducer';
+import {addPostTC} from '../../profile-reducer';
 import AddPost from "./AddPost";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state: StateType) => {
     return {
-        textareaInput: state.profilePage.textareaInput
+
     }
 };
 // const mapDispatchToProps = (dispatch: DispatchTypeProfileReducer) => {
 //     return {
-//         addPost: () => {dispatch(addPostActionCreator())},
-//         changeText: (text: string) => {dispatch(newTextPostActionCreator(text))}
+//         addPost: () => {dispatch(addPostsAC())},
+//         changeText: (text: string) => {dispatch(addPostAC(text))}
 //     }
 // };
-const AddPostContainer = connect(mapStateToProps, {addPostThunkCreator})(AddPost);
+const AddPostContainer = connect(mapStateToProps, {addPostTC})(AddPost);
 
 export default AddPostContainer;

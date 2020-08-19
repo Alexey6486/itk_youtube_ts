@@ -12,7 +12,7 @@ function Posts(props: PropsType) {
     const {posts} = props;
 
     const postsMap = posts.map((post) => {
-        return <Post key={post.likes} message={post.message} likes={post.likes} />;
+        return <Post key={post.postId} message={post.message} likes={post.likes} postId={post.postId}/>;
     });
 
     return (

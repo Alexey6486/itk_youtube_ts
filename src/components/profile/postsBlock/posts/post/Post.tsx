@@ -1,13 +1,23 @@
 import React from 'react';
 import styles from './style.module.css'
+import {useDispatch} from "react-redux";
+import { removePostTC } from '../../../profile-reducer';
 //import userLogo from './../../../../../assets/images/post/user.svg'
 
 type PropsType = {
     message: string
     likes: string
+    postId: string
 }
 
 function Post(props: PropsType) {
+
+    const dispatch = useDispatch();
+
+    const removeHandler = () => {
+        dispatch(removePostTC(props.postId));
+    }
+
     return (
         <>
             <div className={styles.postItem}>
@@ -32,6 +42,9 @@ function Post(props: PropsType) {
                         </svg>
                     </div>
                     {props.likes}
+                </div>
+                <div className={styles.removeBtn} onClick={removeHandler}>
+                    remove
                 </div>
                 <div className={styles.postItem__avatar}>
                     {/*<img src={userLogo} alt=""/>*/}

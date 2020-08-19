@@ -43,7 +43,9 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+html{
+    overflow-y: scroll;
+}
 .container {
     width: 100%;
     padding: 0 15px;

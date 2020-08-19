@@ -10,7 +10,7 @@
 .likesBlock{
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 65px;
     border-radius: 5px;
     padding: 2px 5px 2px 22px;
     color: #ffffff;
@@ -55,4 +55,21 @@
     color: #444444;
     font-size: 14px;
     line-height: 1.2;
+}
+.removeBtn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: #ffffff;
+    background-color: #444444;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.removeBtn:hover{
+    color: #ffffff;
+    background-color: tomato;
 }

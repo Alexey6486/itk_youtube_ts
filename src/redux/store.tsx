@@ -7,6 +7,7 @@ import {InitStateType} from "./initReducer";
 export type PostsType = {
     message: string
     likes: string
+    postId: string
 }
 export type MessageType = {
     id: number
@@ -65,7 +66,7 @@ export type LocationType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
-    textareaInput: string
+    status: string
 }
 export type MessagesPageType = {
     messagesInChatRoom: Array<MessageType>
@@ -95,7 +96,7 @@ export type StateType = {
 
 //export type DispatchType = (action: ActionsType) => void
 
-//export type ActionsType = AddPostACType | NewTextPostACType | AddMsgACType | NewTextMsgACType;
+//export type ActionsType = AddPostsACType | AddPostACType | AddMsgACType | NewTextMsgACType;
 
 /*
 export let store = {

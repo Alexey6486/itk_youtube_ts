@@ -5,7 +5,7 @@ import {
     getUsersOnPageChangeThunkCreator,
     getUsersThunkCreator,
     unfollowUserThunkCreator
-} from "../../redux/users-reducer";
+} from "./users-reducer";
 import React from "react";
 import {Pagination} from "../common/pagination/Pagination";
 import {Users} from "./Users";
@@ -18,7 +18,7 @@ import {
     getPageSize,
     getTotalUsersCount,
     getUsersSuperSelector
-} from "../../redux/users-selectors";
+} from "./users-selectors";
 
 type PropsType = {
     users: Array<ApiUsersType>

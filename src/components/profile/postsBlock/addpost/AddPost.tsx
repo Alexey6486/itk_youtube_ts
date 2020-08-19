@@ -6,13 +6,13 @@ import { Textarea } from '../../../common/formsControl/FormsControl';
 import {useDispatch} from "react-redux";
 
 type PropsType = {
-    addPostThunkCreator: (post: string) => void
+    addPostTC: (post: string) => void
 }
 
 function AddPost(props: PropsType) {
 
     const dispatch = useDispatch();
-    const {addPostThunkCreator} = props;
+    const {addPostTC} = props;
     //const [err, setErr] = useState(false);
 
     // const addTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,7 +33,7 @@ function AddPost(props: PropsType) {
     // };
 
     const onSubmit = (formData: FormDataType) => {
-        addPostThunkCreator(formData.post);
+        addPostTC(formData.post);
         dispatch(reset('PostForm'));
     }
 
