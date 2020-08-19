@@ -1,8 +1,9 @@
 import React from "react";
 import styles from './style.module.css'
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm, reset} from "redux-form";
 import {Textarea} from "../../../common/formsControl/FormsControl";
 import {maxLengthCreator, requiredField} from "../../../../utils/validators/validators";
+import { useDispatch } from "react-redux";
 
 type PropsType = {
     textareaInput: string
@@ -15,6 +16,7 @@ type FormDataType = {
 
 export const NewMessage = React.memo((props: PropsType) => {
 
+    const dispatch = useDispatch();
     const {addMessageThunkCreator} = props;
     // const [err, setErr] = useState(false);
 
@@ -38,6 +40,7 @@ export const NewMessage = React.memo((props: PropsType) => {
 
     const onSubmit = (formData: FormDataType) => {
         addMessageThunkCreator(formData.message);
+        dispatch(reset('MessageForm'));
     }
 
     return (

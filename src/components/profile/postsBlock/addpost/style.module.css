@@ -50,3 +50,20 @@
 .addPostBlock.err textarea::placeholder{
     color: tomato;
 }
+.addPostBlock button{
+    width: 100%;
+    max-width: 120px;
+    height: 39px;
+    background-color: transparent;
+    border: 1px solid #ffa405;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all linear 150ms;
+    color: #444444;
+    outline: none;
+}
+.addPostBlock button:hover{
+    color: #eaeaea;
+    border: 1px solid #ffa405;
+    background-color: #ffa405;
+}

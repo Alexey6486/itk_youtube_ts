@@ -33,13 +33,15 @@ export const Users = (props: PropsType) => {
 
         return (
             <div className={s.userWrap} key={user.id}>
-                <div>Name: <NavLink to={`/userprofile/${user.id}`}>{user.name}</NavLink></div>
-                <div>photo: <NavLink to={`/userprofile/${user.id}`}><img
-                    src={user.photos.small !== null ? user.photos.small : userPhoto} alt="avatar"/></NavLink></div>
-                <div>Status: {user.status}</div>
-                <div>Friend: {friend}</div>
+                <div>
+                    <NavLink to={`/userprofile/${user.id}`}>
+                        <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="avatar"/>
+                    </NavLink>
+                </div>
+                <div className={s.userDataField}>Name: <NavLink to={`/userprofile/${user.id}`}>{user.name}</NavLink></div>
+                <div className={s.userDataField}>Friend: {friend}</div>
 
-                <button onClick={onclickHandler}
+                <button className={s.followBtn} onClick={onclickHandler}
                         disabled={disabledIdArr.some(userId => userId === user.id)}>
                     {followBtn}
                 </button>

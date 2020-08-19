@@ -11,7 +11,60 @@
 
 .loginFormGroup{
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 .err{
     color: tomato;
+}
+
+.loginForm {
+    max-width: 300px;
+}
+.loginForm input{
+    resize: none;
+    background: transparent;
+    height: 30px;
+
+    box-shadow: none;
+    outline: none;
+    color: #333333;
+    font-size: 14px;
+    border: 1px solid #555555;
+    transition: all linear 200ms;
+    padding: 0 5px;
+    margin: 0 5px 0 0;
+}
+.loginForm input::placeholder{
+    color: #333333;
+}
+.loginForm input:hover,
+.loginForm input:focus{
+    border: 1px solid #ffa405;
+}
+.loginForm button{
+    border: 1px solid #ffa405;
+    background-color: transparent;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    justify-content: center;
+    color: #444444;
+    padding: 0 30px;
+    cursor: pointer;
+    transition: all linear 200ms;
+    text-transform: uppercase;
+    outline: none;
+}
+.loginForm button:hover{
+    color: #eaeaea;
+    background-color: #ffa405;
+}
+.loginForm button:focus{
+    outline: none;
+}
+.loginForm .formGroup #loginCheckbox{
+    width: 20px;
+    height: 20px;
 }

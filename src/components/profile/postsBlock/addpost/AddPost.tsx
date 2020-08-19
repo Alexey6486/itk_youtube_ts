@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './style.module.css'
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm, reset} from "redux-form";
 import {maxLengthCreator, requiredField} from "../../../../utils/validators/validators";
 import { Textarea } from '../../../common/formsControl/FormsControl';
+import {useDispatch} from "react-redux";
 
 type PropsType = {
     addPostThunkCreator: (post: string) => void
@@ -10,6 +11,7 @@ type PropsType = {
 
 function AddPost(props: PropsType) {
 
+    const dispatch = useDispatch();
     const {addPostThunkCreator} = props;
     //const [err, setErr] = useState(false);
 
@@ -32,6 +34,7 @@ function AddPost(props: PropsType) {
 
     const onSubmit = (formData: FormDataType) => {
         addPostThunkCreator(formData.post);
+        dispatch(reset('PostForm'));
     }
 
     return (

@@ -65,7 +65,6 @@ export const authApi = {
                 rememberMe,
             })
             .then(res => {
-                debugger
                 return res.data;
             })
 

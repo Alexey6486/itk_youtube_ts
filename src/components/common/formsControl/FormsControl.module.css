@@ -17,3 +17,7 @@
 .formGroup.error span{
     display: block;
 }
+.formGroup #loginCheckbox{
+    width: 20px !important;
+    height: 20px !important;
+}

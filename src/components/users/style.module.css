@@ -1,4 +1,29 @@
 .userProfileTitle{
     text-transform: uppercase;
 }
-
+.userWrap{
+    padding: 15px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    border: 1px solid #eaeaea;
+    margin-bottom: 15px;
+}
+.followBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    cursor: pointer;
+    padding: 0 10px;
+    border: 1px solid #555555;
+    background-color: #ffffff;
+    color: #555555;
+    text-transform: capitalize;
+}
+.followBtn:hover{
+    border: 1px solid #555555;
+    background-color: #555555;
+    color: #ffffff;
+}
+.userDataField{
+    margin-bottom: 5px;
+}

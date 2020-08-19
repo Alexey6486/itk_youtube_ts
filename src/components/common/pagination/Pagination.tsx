@@ -56,7 +56,7 @@ export const Pagination = (props: PropsType) => {
     const lastPage = pages.map(page => {
         if (page === pages.length - 1) {
             return (
-                <div key={page}>
+                <div className={s.pagBtnWrap} key={page}>
                     <div className={s.paginationDots}>...</div>
                     <button onClick={() => portionWithLastPage(page)}
                          className={page === currentPage ? s.currentPage : ""}>{page}</button>
@@ -68,7 +68,7 @@ export const Pagination = (props: PropsType) => {
     const firstPage = pages.map(page => {
         if (page === 1) {
             return (
-                <div key={page}>
+                <div className={s.pagBtnWrap} key={page}>
                     <button onClick={() => portionWithFirstPage(page)}
                          className={page === currentPage ? s.currentPage : ""}>{page}</button>
                     <div className={s.paginationDots}>...</div>

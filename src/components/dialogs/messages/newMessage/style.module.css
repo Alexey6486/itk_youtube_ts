@@ -1,13 +1,13 @@
 .newMessageBlock{
     border: 1px solid #eaeaea;
     width: 100%;
-    height: 110px;
+    margin-bottom: 15px;
 }
-.newMessageForm{
+.newMessageBlock form{
     width: 100%;
     padding: 10px;
 }
-.newMessageForm>textarea{
+.newMessageBlock textarea{
     resize: none;
     background: transparent;
     height: 60px;
@@ -18,15 +18,16 @@
     font-size: 14px;
     border: 1px solid transparent;
     transition: all linear 200ms;
+    margin-bottom: 10px;
 }
-.newMessageForm>textarea::placeholder{
+.newMessageBlock textarea::placeholder{
     color: #333333;
 }
-.newMessageForm>textarea:hover,
-.newMessageForm>textarea:focus{
+.newMessageBlock textarea:hover,
+.newMessageBlock textarea:focus{
     border: 1px solid #ffa405;
 }
-.newMessageForm>button{
+.newMessageBlock button{
     border: 1px solid #ffa405;
     background-color: transparent;
     font-size: 14px;
@@ -39,14 +40,15 @@
     cursor: pointer;
     transition: all linear 200ms;
     text-transform: uppercase;
+    outline: none;
 }
-.newMessageForm>button:hover{
+.newMessageBlock button:hover{
     color: #eaeaea;
     background-color: #ffa405;
 }
-.newMessageForm>button:focus{
+.newMessageBlock button:focus{
     outline: none;
 }
-.newMessageForm.err>textarea::placeholder{
+.newMessageBlock form.err textarea::placeholder{
     color: tomato;
 }

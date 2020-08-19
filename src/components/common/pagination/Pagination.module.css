@@ -4,32 +4,35 @@
     width: 100%;
     flex-wrap: wrap;
 }
-.paginationWrap>button{
+.paginationWrap button{
     margin-right: 5px;
     background-color: #ffffff;
     color: #555555;
     cursor: pointer;
     border: 1px solid #555555;
 }
-.paginationWrap>button:hover,
-.paginationWrap>button.currentPage{
+.paginationWrap button:hover,
+.paginationWrap button.currentPage{
     background-color: #ffa405;
     color: #ffffff;
     border: 1px solid #ffa405;
 }
-.paginationWrap>button:focus {
+.paginationWrap button:focus {
     outline: none;
 }
-.paginationWrap>button.paginationArrowBtn{
+.paginationWrap button.paginationArrowBtn{
     background-color: #555555;
     color: #ffa405;
     border: 1px solid #555555;
 }
-.paginationWrap>button.paginationArrowBtn:hover{
+.paginationWrap button.paginationArrowBtn:hover{
     background-color: #ffffff;
     color: #555555;
     border: 1px solid #555555;
 }
 .paginationDots{
     margin-right: 5px;
+}
+.pagBtnWrap{
+    display: flex;
 }
