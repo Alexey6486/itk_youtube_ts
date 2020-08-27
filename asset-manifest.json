@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/itk_youtube_ts/static/css/main.5cd32847.chunk.css",
+    "main.js": "/itk_youtube_ts/static/js/main.d297539c.chunk.js",
+    "main.js.map": "/itk_youtube_ts/static/js/main.d297539c.chunk.js.map",
+    "runtime-main.js": "/itk_youtube_ts/static/js/runtime-main.0b07e6bd.js",
+    "runtime-main.js.map": "/itk_youtube_ts/static/js/runtime-main.0b07e6bd.js.map",
+    "static/js/2.41606121.chunk.js": "/itk_youtube_ts/static/js/2.41606121.chunk.js",
+    "static/js/2.41606121.chunk.js.map": "/itk_youtube_ts/static/js/2.41606121.chunk.js.map",
+    "index.html": "/itk_youtube_ts/index.html",
+    "precache-manifest.78296b0c5bd89345c3c6df4e77e40220.js": "/itk_youtube_ts/precache-manifest.78296b0c5bd89345c3c6df4e77e40220.js",
+    "service-worker.js": "/itk_youtube_ts/service-worker.js",
+    "static/css/main.5cd32847.chunk.css.map": "/itk_youtube_ts/static/css/main.5cd32847.chunk.css.map",
+    "static/js/2.41606121.chunk.js.LICENSE.txt": "/itk_youtube_ts/static/js/2.41606121.chunk.js.LICENSE.txt",
+    "static/media/loading.svg": "/itk_youtube_ts/static/media/loading.a09689b4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0b07e6bd.js",
+    "static/js/2.41606121.chunk.js",
+    "static/css/main.5cd32847.chunk.css",
+    "static/js/main.d297539c.chunk.js"
+  ]
+}
