@@ -7,7 +7,7 @@ import {AppRootState} from "../../redux/redux-store";
 import {AuthState} from "../login/auth-reducer";
 import {Redirect} from "react-router-dom";
 
-export const Dialogs = React.memo(() => {
+const Dialogs = React.memo(() => {
     console.log('render dialogs')
     const authState = useSelector<AppRootState, AuthState>(state => state.auth)
     const {isAuth} = authState;
@@ -28,3 +28,5 @@ export const Dialogs = React.memo(() => {
         </div>
     );
 });
+
+export default Dialogs;
